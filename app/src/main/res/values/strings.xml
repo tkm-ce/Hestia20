@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Hestia 20</string>
+    <string name="title_activity_user_home">UserHome</string>
+    <string name="registered_events">REGISTERED EVENTS</string>
+    <string name="logout">Logout</string>
 </resources>

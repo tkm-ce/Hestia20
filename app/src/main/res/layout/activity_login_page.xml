@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    tools:context=".login_page.LoginPage">
+
+    <!--    <de.hdodenhof.circleimageview.CircleImageView-->
+    <!--        android:id="@+id/boarding_profile_img"-->
+    <!--        android:layout_width="65dp"-->
+    <!--        android:layout_height="65dp"-->
+    <!--        android:layout_marginTop="50dp"-->
+    <!--        android:layout_marginEnd="25dp"-->
+    <!--        android:scaleType="fitCenter"-->
+    <!--        android:src="@drawable/splash_logo"-->
+    <!--        app:civ_border_color="#000000"-->
+    <!--        app:civ_border_width="1dp"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+    <AutoCompleteTextView
+        android:id="@+id/boarding_college_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="25dp"
+        android:background="@color/colorAccent"
+        android:fontFamily="@font/circular_bold"
+        android:hint="Enter College Name"
+        android:inputType="text"
+        android:textColorHint="#fff"
+        android:padding="8dp"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/boarding_number_field" />
+
+    <Button
+        android:id="@+id/boarding_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="40dp"
+        android:backgroundTint="#fff"
+        android:background="@drawable/button_circle"
+        android:drawableEnd="@drawable/ic_arrow_forward"
+        android:fontFamily="@font/circular_bold"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:paddingEnd="10dp"
+        android:text="Lets Go"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/boarding_number_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="25dp"
+        android:textColorHint="#fff"
+        android:background="@color/colorAccent"
+        android:fontFamily="@font/circular_bold"
+        android:hint="Enter Phone No."
+        android:importantForAutofill="no"
+        android:inputType="phone"
+        android:maxLength="10"
+        android:padding="8dp"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/boarding_name"
+        tools:targetApi="o" />
+
+    <ImageView
+        android:id="@+id/boarding_profile_img"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="44dp"
+        android:scaleType="fitCenter"
+        android:src="@color/colorAccent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/boarding_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/circular_bold"
+        android:textColor="@android:color/white"
+        android:textSize="19sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/boarding_profile_img"
+        tools:text="Hey, Dummy" />
+
+    <!--    <com.airbnb.lottie.LottieAnimationView-->
+    <!--        android:id="@+id/progress"-->
+    <!--        android:layout_width="80dp"-->
+    <!--        android:layout_height="80dp"-->
+    <!--        android:layout_marginTop="25dp"-->
+    <!--        android:visibility="gone"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/boarding_submit"-->
+    <!--        app:lottie_autoPlay="false"-->
+    <!--        app:lottie_loop="true"-->
+    <!--        app:lottie_rawRes="@raw/loading" />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

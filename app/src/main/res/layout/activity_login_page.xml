@@ -82,16 +82,15 @@
         app:layout_constraintTop_toBottomOf="@+id/boarding_name"
         tools:targetApi="o" />
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/boarding_profile_img"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
+        android:layout_width="83dp"
+        android:layout_height="76dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="44dp"
-        android:scaleType="fitCenter"
-        android:src="@color/colorAccent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars[11]" />
 
     <TextView
         android:id="@+id/boarding_name"

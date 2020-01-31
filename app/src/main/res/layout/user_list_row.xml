@@ -1,14 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
+    xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@android:color/transparent">
+    android:background="@android:color/transparent"
+    android:orientation="horizontal">
 
     <androidx.cardview.widget.CardView
-        app:cardBackgroundColor="@android:color/holo_blue_dark"
         android:layout_width="132dp"
-        android:layout_height="162dp"/>
+        android:layout_height="162dp"
+        app:cardBackgroundColor="@android:color/holo_blue_dark"
+        app:cardCornerRadius="15dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/event_poster"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_launcher"
+                android:tint="#6F000000" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/user_event_row_title"
+                android:layout_marginStart="6dp"
+                android:fontFamily="@font/circular_bold"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                tool:text="28/02/20" />
+
+            <TextView
+                android:id="@+id/user_event_row_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="6dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="10dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/circular_bold"
+                android:maxLines="2"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                tool:text="DJ WAR" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>

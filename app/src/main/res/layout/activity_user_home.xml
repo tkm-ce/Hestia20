@@ -44,7 +44,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/user_pic"
-        tools:text="John Appleseed"/>
+        tools:text="John Appleseed" />
 
     <TextView
         android:id="@+id/user_college"
@@ -57,8 +57,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/user_name"
-        tools:text="T K M College of Engineering"
-        />
+        tools:text="T K M College of Engineering" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -91,7 +90,41 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/user_events_title"/>
+            app:layout_constraintTop_toBottomOf="@id/user_events_title" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/accommodation_layout_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_list">
+
+            <TextView
+                android:id="@+id/user_accommodation_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/circular_bold"
+                android:gravity="start"
+                android:padding="15dp"
+                android:text="@string/accommodation_details"
+                android:textColor="@android:color/white"
+                android:textSize="17sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_toEndOf="@id/user_accommodation_title"
+                android:contentDescription="@string/icon_bed"
+                android:src="@drawable/ic_bed" />
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/user_logout"
@@ -100,11 +133,11 @@
             android:layout_marginBottom="15dp"
             android:fontFamily="@font/circular_bold"
             android:text="@string/logout"
-            android:textColor="@android:color/holo_orange_dark"
+            android:textColor="@color/colorAccent"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

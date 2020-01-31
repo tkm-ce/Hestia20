@@ -3,4 +3,12 @@
     <string name="title_activity_user_home">UserHome</string>
     <string name="registered_events">REGISTERED EVENTS</string>
     <string name="logout">Logout</string>
+    <string name="event_poster">event_poster</string>
+    <string name="accommodation_details">ACCOMMODATION DETAILS</string>
+    <string name="logout_prompt">Sure you want to logout ?</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="accommodation_confirmation_text">Dates confirmed for:</string>
+    <string name="okay">Okay</string>
+    <string name="icon_bed">icon_bed</string>
 </resources>

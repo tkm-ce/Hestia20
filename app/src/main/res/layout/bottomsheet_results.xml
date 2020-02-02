@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:id="@+id/results_list_view"
+    app:layout_behavior="@string/bottom_sheet_behavior"
+    app:behavior_peekHeight="0dp"
+    android:background="@color/colorPrimary"
+    app:behavior_hideable="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/ave_heavy"
+        android:layout_marginTop="18dp"
+        android:layout_marginStart="27dp"
+        android:text="Results"
+        android:textColor="@android:color/white"
+        android:textSize="15sp" />
+
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/results_list"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_marginTop="15dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginBottom="10dp" />-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include layout="@layout/results_item_row" />
+
+        <include layout="@layout/results_item_row" />
+
+        <include layout="@layout/results_item_row" />
+
+    </LinearLayout>
+
+</LinearLayout>

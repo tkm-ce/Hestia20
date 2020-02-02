@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    android:id="@+id/btm_register"
+    android:background="@android:color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    app:layout_behavior="@string/bottom_sheet_behavior"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:behavior_peekHeight="0dp"
+    app:behavior_hideable="true"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:text="Add upto 3 Participants"
+        android:textSize="17sp"
+        android:padding="10dp"
+        android:textColor="@android:color/black"
+        android:id="@+id/btm_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/btm_mail_field"
+        android:fontFamily="@font/ave_med"
+        android:inputType="text"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:background="@color/fieldBg"
+        android:backgroundTint="@color/field_bg"
+        android:padding="7dp"
+        android:hint="Enter Email id" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/btm_next"
+            android:padding="7dp"
+            android:layout_marginStart="7dp"
+            android:layout_marginEnd="7dp"
+            android:background="@drawable/add_bg"
+            android:textColor="@android:color/white"
+            android:text="add_participant"
+            android:layout_marginBottom="15dp"
+            android:textSize="17sp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/btm_btn_submit"
+            android:padding="7dp"
+            android:layout_marginStart="7dp"
+            android:layout_marginEnd="7dp"
+            android:background="@drawable/btn_disabled_bg"
+            android:textColor="@android:color/white"
+            android:text="Submit"
+            android:layout_marginBottom="15dp"
+            android:textSize="17sp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+</LinearLayout>

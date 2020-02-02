@@ -11,4 +11,21 @@
     <string name="accommodation_confirmation_text">Dates confirmed for:</string>
     <string name="okay">Okay</string>
     <string name="icon_bed">icon_bed</string>
+    <string name="title_activity_home_main">HomeActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="cal_icon">cal_icon</string>
+    <string name="see_schedule">View Schedule</string>
+    <string name="top_events">TOP EVENTS</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="our_sponsors">Our Sponsors</string>
+    <string name="about_us">About us</string>
+    <string name="event_image">event_image</string>
+    <string name="icon_arrow">icon_arrow</string>
+    <string name="icon">icon</string>
+    <string name="all_events">ALL EVENTS</string>
 </resources>

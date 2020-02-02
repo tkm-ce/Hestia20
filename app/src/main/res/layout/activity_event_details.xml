@@ -186,7 +186,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/fee_icon"
                     android:padding="5dp"
-                    android:text="registration_fee"
+                    android:text="Registration Fee"
                     android:textColor="@color/white" />
 
                 <TextView

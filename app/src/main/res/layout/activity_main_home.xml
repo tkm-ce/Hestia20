@@ -7,19 +7,92 @@
     android:background="@android:color/background_dark"
     tools:context=".user_dash.UserHome">
 
-    <TextView
-        android:id="@+id/user_pic"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/ave_heavy"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        android:background="@drawable/user_sheet_bg"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="HESTIA" />
+        app:layout_constraintTop_toBottomOf="@id/calendar_items"
+        app:layout_constraintVertical_bias="1.0">
+
+        <LinearLayout
+            android:id="@+id/section_title_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/user_events_title"
+            tools:layout_editor_absoluteX="10dp">
+
+            <include layout="@layout/section_list_row" />
+
+            <include layout="@layout/section_list_row" />
+
+            <include layout="@layout/section_list_row" />
+
+            <include layout="@layout/section_list_row" />
+
+            <include layout="@layout/section_list_row" />
+
+            <include layout="@layout/section_list_row" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/section_title_recycler">
+
+            <include layout="@layout/event_list_row" />
+
+            <include layout="@layout/event_list_row" />
+
+            <include layout="@layout/event_list_row" />
+
+            <include layout="@layout/event_list_row" />
+
+
+        </LinearLayout>
+
+        <!--        <androidx.recyclerview.widget.RecyclerView-->
+        <!--            android:id="@+id/section_title_recycler"-->
+        <!--            android:layout_marginTop="10dp"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/user_events_title"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent" />-->
+
+        <!--        <androidx.recyclerview.widget.RecyclerView-->
+        <!--            android:id="@+id/user_list"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="10dp"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/section_title_recycler" />-->
+
+        <TextView
+            android:id="@+id/user_events_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="13dp"
+            android:fontFamily="@font/ave_heavy"
+            android:text="ALL EVENTS"
+            android:textColor="@android:color/background_dark"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/boarding_profile_img"
@@ -27,8 +100,6 @@
         android:layout_height="56dp"
         android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.887"
-        app:layout_constraintStart_toEndOf="@+id/user_pic"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars[11]" />
 
@@ -37,12 +108,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="70dp"
         android:fontFamily="@font/circular_bold"
         android:textColor="@android:color/white"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/user_pic"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="TOP EVENTS" />
 
     <LinearLayout
@@ -56,9 +127,7 @@
         android:layout_height="wrap_content">
 
         <include layout="@layout/user_list_row" />
-
         <include layout="@layout/user_list_row" />
-
         <include layout="@layout/user_list_row" />
 
     </LinearLayout>
@@ -77,7 +146,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="15dp"
         android:background="@drawable/accommodation_layout_bg"
         app:layout_constraintEnd_toEndOf="parent"
@@ -120,36 +189,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="374dp"
-        android:background="@drawable/user_sheet_bg"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/user_events_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="11dp"
-            android:layout_marginTop="23dp"
-            android:fontFamily="@font/ave_heavy"
-            android:text="@string/registered_events"
-            android:textColor="@android:color/background_dark"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/user_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/user_events_title" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

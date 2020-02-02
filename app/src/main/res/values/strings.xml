@@ -24,4 +24,8 @@
     <string name="title_activity_home">HomeActivity</string>
     <string name="our_sponsors">Our Sponsors</string>
     <string name="about_us">About us</string>
+    <string name="event_image">event_image</string>
+    <string name="icon_arrow">icon_arrow</string>
+    <string name="icon">icon</string>
+    <string name="all_events">ALL EVENTS</string>
 </resources>

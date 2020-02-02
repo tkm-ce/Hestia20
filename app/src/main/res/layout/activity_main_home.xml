@@ -98,7 +98,8 @@
         android:id="@+id/boarding_profile_img"
         android:layout_width="38dp"
         android:layout_height="56dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars[11]" />
@@ -112,7 +113,7 @@
         android:textColor="@android:color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/featured_events_title"
-        app:layout_constraintEnd_toEndOf="@+id/boarding_profile_img"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:text="HESTIA" />
 

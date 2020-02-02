@@ -1,7 +1,7 @@
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorPrimaryDark"
+    android:background="@android:color/background_dark"
     android:padding="10dp">
 
     <LinearLayout
@@ -13,7 +13,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/ave_med"
+            android:fontFamily="@font/ave_heavy"
             android:padding="10dp"
             android:text="Hestia Schedule"
             android:textColor="@android:color/white"

@@ -15,8 +15,8 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/calendar_items"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toBottomOf="@+id/calendar_items"
+        app:layout_constraintVertical_bias="3.0">
 
         <LinearLayout
             android:id="@+id/section_title_recycler"
@@ -102,6 +102,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars[11]" />
+
+    <TextView
+        android:id="@+id/hestia_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/ave_heavy"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/featured_events_title"
+        app:layout_constraintEnd_toEndOf="@+id/boarding_profile_img"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="HESTIA" />
 
     <TextView
         android:id="@+id/featured_events_title"

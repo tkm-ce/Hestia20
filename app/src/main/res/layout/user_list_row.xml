@@ -12,7 +12,7 @@
         android:layout_width="132dp"
         android:layout_height="162dp"
         app:cardBackgroundColor="@android:color/holo_blue_dark"
-        app:cardCornerRadius="15dp">
+        app:cardCornerRadius="25dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -23,7 +23,7 @@
                 android:layout_height="match_parent"
                 android:contentDescription="@string/event_poster"
                 android:scaleType="centerCrop"
-                android:src="@mipmap/ic_launcher"
+                tool:src="@tools:sample/avatars[10]"
                 android:tint="#6F000000" />
 
             <TextView

@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
+    <color name="field">#757575</color>
+
     <color name="fieldBg">#757575</color>
     <color name="field_bg">#e0f7fa</color>
     <color name="colorAdd">#FF40CF</color>

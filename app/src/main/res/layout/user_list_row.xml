@@ -4,29 +4,34 @@
     xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
+    android:layout_marginEnd="5dp"
     android:background="@android:color/transparent"
     android:orientation="horizontal">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/user_event_row_card"
         android:layout_width="132dp"
         android:layout_height="162dp"
         app:cardBackgroundColor="@android:color/holo_blue_dark"
-        app:cardCornerRadius="25dp">
+        android:elevation="3dp"
+        app:cardCornerRadius="20dp"
+        app:cardUseCompatPadding="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <ImageView
+                android:id="@+id/user_event_row_img"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/event_poster"
                 android:scaleType="centerCrop"
-                tool:src="@tools:sample/avatars[10]"
+                android:src="@mipmap/ic_launcher"
                 android:tint="#6F000000" />
 
             <TextView
+                android:id="@+id/user_event_row_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_above="@id/user_event_row_title"

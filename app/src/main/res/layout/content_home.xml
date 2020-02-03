@@ -1,23 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/home_root"
     android:layout_height="match_parent"
     android:background="@android:color/background_dark"
     tools:context=".user_dash.UserHome">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:id="@+id/home_menu_btn"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginEnd="8dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/icon"
+            android:src="@drawable/ic_menu_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/app_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:fontFamily="@font/circular_bold"
+            android:text="@string/app_name"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/boarding_profile_img"
+            android:layout_width="38dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="12dp"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/featured_events_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="23dp"
+            android:fontFamily="@font/circular_bold"
+            android:text="@string/top_events"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/app_title" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/events_featured_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="9dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/featured_events_title" />
+
+
+        <RelativeLayout
+            android:id="@+id/calendar_items"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/accommodation_layout_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/events_featured_recycler">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:contentDescription="@string/icon"
+                android:src="@drawable/ic_calendar" />
+
+            <TextView
+                android:id="@+id/home_schedule_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/circular_bold"
+                android:gravity="start"
+                android:padding="15dp"
+                android:text="@string/see_schedule"
+                android:textColor="@android:color/white"
+                android:textSize="17sp" />
+        </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <LinearLayout
+        android:id="@+id/home_bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="@drawable/user_sheet_bg"
         android:orientation="vertical"
         app:behavior_hideable="false"
-        app:behavior_peekHeight="120dp"
+        app:behavior_peekHeight="400dp"
         app:layout_behavior="@string/bottom_sheet_behavior"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/user_events_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="13dp"
+            android:fontFamily="@font/ave_heavy"
+            android:text="@string/all_events"
+            android:textColor="@android:color/background_dark"
+            android:textSize="16sp" />
 
         <LinearLayout
             android:id="@+id/section_title_recycler"
@@ -25,7 +142,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/user_events_title"
             tools:layout_editor_absoluteX="10dp">
 
             <include layout="@layout/section_list_row" />
@@ -46,10 +162,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/section_title_recycler">
+            android:orientation="vertical">
 
             <include layout="@layout/event_list_row" />
 
@@ -80,131 +193,7 @@
         <!--            app:layout_constraintStart_toStartOf="parent"-->
         <!--            app:layout_constraintTop_toBottomOf="@id/home_category_list" />-->
 
-        <TextView
-            android:id="@+id/user_events_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="11dp"
-            android:layout_marginTop="13dp"
-            android:fontFamily="@font/ave_heavy"
-            android:text="@string/all_events"
-            android:textColor="@android:color/background_dark"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/boarding_profile_img"
-        android:layout_width="38dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars[11]" />
-
-    <TextView
-        android:id="@+id/app_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:fontFamily="@font/circular_bold"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/featured_events_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="HESTIA '20" />
-
-    <TextView
-        android:id="@+id/featured_events_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="70dp"
-        android:fontFamily="@font/circular_bold"
-        android:textColor="@android:color/white"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="TOP EVENTS" />
-
-    <LinearLayout
-        android:id="@+id/events_featured_recycler"
-        android:orientation="horizontal"
-        android:layout_marginStart="10dp"
-        app:layout_constraintHorizontal_bias="0.034"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/featured_events_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <include layout="@layout/user_list_row" />
-        <include layout="@layout/user_list_row" />
-        <include layout="@layout/user_list_row" />
-
     </LinearLayout>
 
-    <!--    <androidx.recyclerview.widget.RecyclerView-->
-    <!--        android:id="@+id/events_featured_recycler"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginStart="20dp"-->
-    <!--        android:layout_marginTop="9dp"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/featured_events_title" />-->
 
-
-    <RelativeLayout
-        android:id="@+id/calendar_items"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="15dp"
-        android:background="@drawable/accommodation_layout_bg"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/events_featured_recycler">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="15dp"
-            android:src="@drawable/ic_calendar" />
-
-        <TextView
-            android:id="@+id/home_schedule_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/circular_bold"
-            android:gravity="start"
-            android:padding="15dp"
-            android:text="@string/see_schedule"
-            android:textColor="@android:color/white"
-            android:textSize="17sp" />
-    </RelativeLayout>
-
-    <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/home_back"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="23dp"
-        android:layout_marginEnd="8dp"
-        android:background="@android:color/transparent"
-        android:scaleX="1.3"
-        android:scaleY="1.3"
-        android:src="@drawable/ic_menu"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/event_row_card"
     app:cardBackgroundColor="#fff"
     app:cardCornerRadius="5dp"
     app:cardElevation="1dp">
@@ -27,39 +28,29 @@
             android:contentDescription="@string/icon"
             android:src="@drawable/ic_right_arrow_circle" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/image_holder"
-            android:layout_width="65dp"
-            android:layout_height="65dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            app:cardBackgroundColor="#fff"
-            app:cardCornerRadius="5dp"
-            app:cardElevation="1dp">
 
             <ImageView
                 android:id="@+id/ordered_product_image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
                 android:contentDescription="@string/event_image"
                 android:scaleType="centerCrop"
-                tools:src="@tools:sample/avatars[1]" />
+                android:src="@mipmap/ic_launcher" />
 
-        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/event_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toStartOf="@id/event_right_click"
-            android:layout_toEndOf="@id/image_holder"
+            android:layout_toEndOf="@id/ordered_product_image"
             android:ellipsize="end"
-            android:fontFamily="@font/ave_med"
+            android:fontFamily="@font/circular_bold"
             android:maxLines="2"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:textColor="#141414"
-            android:textSize="16sp"
+            android:textSize="17sp"
             tools:text="Event name" />
 
         <TextView
@@ -70,7 +61,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
-            android:layout_toEndOf="@id/image_holder"
+            android:layout_toEndOf="@id/ordered_product_image"
             android:fontFamily="@font/ave_med"
             android:maxLines="1"
             android:paddingLeft="5dp"

@@ -6,7 +6,9 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckedTextView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +26,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.snackbar.Snackbar;
 
 import net.glxn.qrgen.android.QRCode;
@@ -43,7 +46,7 @@ import java.util.Objects;
 import tkmce.hestia20.Adapter.TopEventAdapter;
 import tkmce.hestia20.Constants;
 import tkmce.hestia20.R;
-import tkmce.hestia20.model.EventModel;
+import tkmce.hestia20.model.EventBasicModel;
 
 import static android.view.View.VISIBLE;
 
@@ -51,7 +54,7 @@ public class UserActivity extends AppCompatActivity implements TopEventAdapter.O
 
     private static final String TAG = UserActivity.class.getSimpleName();
 
-    private ArrayList<EventModel> regEvents = new ArrayList<>();
+    private ArrayList<EventBasicModel> regEvents = new ArrayList<>();
     private TopEventAdapter adapter;
     private TextView noEvents;
     private ImageView imgQR;
@@ -70,11 +73,19 @@ public class UserActivity extends AppCompatActivity implements TopEventAdapter.O
 
         account = GoogleSignIn.getLastSignedInAccount(this);
 
+        TextView logout_btn = findViewById(R.id.logout_title);
+        logout_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logoutUser();
+            }
+        });
+
         TextView title = findViewById(R.id.user_name);
-        TextView college_name = findViewById(R.id.user_college);
+        TextView college_name = findViewById(R.id.user_college); // TODO: Add college name
         assert account != null;
         title.setText(String.format("Hi, %s", account.getDisplayName()));
-        noEvents = findViewById(R.id.events_null_text);
+        noEvents = findViewById(R.id.no_events_registered);
         imgQR = findViewById(R.id.imgQR);
 
         adapter = new TopEventAdapter(regEvents, this);
@@ -211,8 +222,8 @@ public class UserActivity extends AppCompatActivity implements TopEventAdapter.O
             JSONArray registrations = new JSONArray(response);
             for (int i = 0; i < registrations.length(); i++) {
                 JSONObject item = registrations.getJSONObject(i);
-                RegisteredEventModel reg = new RegisteredEventModel();
-                reg.setId(item.getString("event_id"));
+                EventBasicModel reg = new EventBasicModel();
+                reg.setEvent_id(item.getString("event_id"));
                 reg.setTitle(item.getString("title"));
                 reg.setF1_hint(item.getString("f1_hint"));
                 reg.setF2_hint(item.getString("f2_hint"));
@@ -237,11 +248,6 @@ public class UserActivity extends AppCompatActivity implements TopEventAdapter.O
     @Override
     public void onRowClicked(int i) {
         Toast.makeText(this, "Clicked on event: " + regEvents.get(i).getTitle(), Toast.LENGTH_SHORT).show();
-
-//        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//        fragmentTransaction.replace(R.id.event_frame, AbstractFragment.newInstance(regEvents.get(i), this, i));
-//        fragmentTransaction.commit();
     }
 
     private void errorOccurred(final String msg) {
@@ -263,8 +269,96 @@ public class UserActivity extends AppCompatActivity implements TopEventAdapter.O
         });
     }
 
-    @Override
-    public void onUpdated(int i) {
-        fetchEvents(i);
+
+    private BottomSheetBehavior sheetBehavior;
+    private LinearLayout bottom_sheet;
+
+    private void accomodationInfo() {
+        bottom_sheet = findViewById(R.id.accommodation_bottom_sheet);
+        sheetBehavior = BottomSheetBehavior.from(bottom_sheet);
+
+        // click event for show-dismiss bottom sheet
+        findViewById(R.id.accommodation_layout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
+                    sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                } else {
+                    sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                }
+            }
+        });
+
+        fetchAccommodationDetails();
     }
+
+    private void fetchAccommodationDetails() {
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        String EVENT_URL = "https://www.hestia.live/App_api/GetUserAccommodationList";
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, EVENT_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        regEvents.clear();
+                        parseAccommodationResponse(response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e(TAG, "onErrorResponse: ", error);
+                        errorOccurred(getString(R.string.network_error));
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put(Constants.KEY_EMAIL, Objects.requireNonNull(account.getEmail()));
+                return params;
+            }
+
+        };
+
+        queue.add(stringRequest);
+    }
+
+    private void parseAccommodationResponse(String response) {
+        try {
+            JSONObject item = new JSONObject(response);
+
+            ((CheckedTextView) findViewById(R.id.day_1)).setChecked(item.getBoolean("day1"));
+            ((CheckedTextView) findViewById(R.id.day_2)).setChecked(item.getBoolean("day2"));
+            ((CheckedTextView) findViewById(R.id.day_3)).setChecked(item.getBoolean("day3"));
+            ((CheckedTextView) findViewById(R.id.day_4)).setChecked(item.getBoolean("day4"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void logoutUser() {
+        //TODO: Setup logout action
+//        GoogleSignInAccount alreadyloggedAccount = GoogleSignIn.getLastSignedInAccount(this);
+//
+//        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+//                .requestEmail()
+//                .build();
+//        MainActivity.mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+//
+//        googleSignInClient.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
+//            @Override
+//            public void onComplete(@NonNull Task<Void> task) {
+//                //On Succesfull signout we navigate the user back to LoginActivity
+//                Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                startActivity(intent);
+//            }
+//        });
+    }
+
+
+//    @Override
+//    public void onUpdated(int i) {
+//        fetchEvents(i);
+//    }
 }

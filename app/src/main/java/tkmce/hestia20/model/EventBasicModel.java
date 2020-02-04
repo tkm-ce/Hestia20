@@ -10,6 +10,35 @@ public class EventBasicModel implements Serializable {
     private String prize;
     private String img;
     private String file1;
+    private String file2;
+
+    private String f1_hint;
+    private String f2_hint;
+
+    public String getF1_hint() {
+        return f1_hint;
+    }
+
+    public void setF1_hint(String f1_hint) {
+        this.f1_hint = f1_hint;
+    }
+
+    public String getF2_hint() {
+        return f2_hint;
+    }
+
+    public void setF2_hint(String f2_hint) {
+        this.f2_hint = f2_hint;
+    }
+
+    public String getFile2() {
+        return file2;
+    }
+
+    public void setFile2(String file2) {
+        this.file2 = file2;
+    }
+
 
     public String getEvent_id() {
         return event_id;

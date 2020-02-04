@@ -16,14 +16,14 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 import tkmce.hestia20.R;
-import tkmce.hestia20.model.EventModel;
+import tkmce.hestia20.model.EventBasicModel;
 
 public class TopEventAdapter extends RecyclerView.Adapter<TopEventAdapter.ViewHolder> {
     private View view;
-    private ArrayList<EventModel> events;
+    private ArrayList<EventBasicModel> events;
     private Activity context;
 
-    public TopEventAdapter(ArrayList<EventModel> events, Activity context) {
+    public TopEventAdapter(ArrayList<EventBasicModel> events, Activity context) {
         this.events = events;
         this.context = context;
     }

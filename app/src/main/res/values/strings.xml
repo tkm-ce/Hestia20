@@ -28,4 +28,8 @@
     <string name="icon_arrow">icon_arrow</string>
     <string name="icon">icon</string>
     <string name="all_events">ALL EVENTS</string>
+    <string name="online">Online</string>
+    <string name="technical">Technical</string>
+    <string name="general">General</string>
+    <string name="cultural">Cultural</string>
 </resources>

@@ -2,8 +2,8 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:id="@+id/home_root"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/background_dark"
     tools:context=".user_dash.UserHome">
@@ -116,14 +116,12 @@
         android:id="@+id/home_bottom_sheet"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="63dp"
         android:background="@drawable/user_sheet_bg"
         android:orientation="vertical"
         app:behavior_hideable="false"
-        app:behavior_peekHeight="400dp"
-        app:layout_behavior="@string/bottom_sheet_behavior"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:behavior_peekHeight="410dp"
+        app:layout_behavior="@string/bottom_sheet_behavior">
 
         <TextView
             android:id="@+id/user_events_title"
@@ -136,62 +134,200 @@
             android:textColor="@android:color/background_dark"
             android:textSize="16sp" />
 
-        <LinearLayout
-            android:id="@+id/section_title_recycler"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal"
-            tools:layout_editor_absoluteX="10dp">
 
-            <include layout="@layout/section_list_row" />
+        <!--<LinearLayout-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/user_events_title"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginStart="-2dp"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent">-->
 
-            <include layout="@layout/section_list_row" />
+        <!--<androidx.recyclerview.widget.RecyclerView-->
+        <!--android:id="@+id/home_category_list"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/user_events_title"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--/>-->
 
-            <include layout="@layout/section_list_row" />
-
-            <include layout="@layout/section_list_row" />
-
-            <include layout="@layout/section_list_row" />
-
-            <include layout="@layout/section_list_row" />
-
-        </LinearLayout>
+        <!--</LinearLayout>-->
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:orientation="vertical">
+            android:foregroundGravity="center"
+            android:orientation="horizontal">
 
-            <include layout="@layout/event_list_row" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center">
 
-            <include layout="@layout/event_list_row" />
+                <ImageView
+                    android:id="@+id/section_icon1"
+                    android:layout_width="62dp"
+                    android:layout_height="62dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/circle_go"
+                    android:backgroundTint="@color/colorAccent"
+                    android:padding="13dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_gear" />
 
-            <include layout="@layout/event_list_row" />
+                <TextView
+                    android:id="@+id/section_title1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/section_icon1"
+                    android:layout_alignStart="@id/section_icon1"
+                    android:layout_alignEnd="@id/section_icon1"
+                    android:fontFamily="@font/circular_bold"
+                    android:padding="3dp"
+                    android:text="@string/technical"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp" />
+            </RelativeLayout>
 
-            <include layout="@layout/event_list_row" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center">
 
+                <ImageView
+                    android:id="@+id/section_icon2"
+                    android:layout_width="62dp"
+                    android:layout_height="62dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/circle_go"
+                    android:backgroundTint="@color/colorAccent"
+                    android:padding="13dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_online" />
 
+                <TextView
+                    android:id="@+id/section_title2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/section_icon2"
+                    android:layout_alignStart="@id/section_icon2"
+                    android:layout_alignEnd="@id/section_icon2"
+                    android:fontFamily="@font/circular_bold"
+                    android:padding="3dp"
+                    android:text="@string/online"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/section_icon3"
+                    android:layout_width="62dp"
+                    android:layout_height="62dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/circle_go"
+                    android:backgroundTint="@color/colorAccent"
+                    android:padding="13dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_general" />
+
+                <TextView
+                    android:id="@+id/section_title3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/section_icon3"
+                    android:layout_alignStart="@id/section_icon3"
+                    android:layout_alignEnd="@id/section_icon3"
+                    android:fontFamily="@font/circular_bold"
+                    android:padding="3dp"
+                    android:text="@string/general"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/section_icon4"
+                    android:layout_width="62dp"
+                    android:layout_height="62dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/circle_go"
+                    android:backgroundTint="@color/colorAccent"
+                    android:padding="13dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_music" />
+
+                <TextView
+                    android:id="@+id/section_title4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/section_icon4"
+                    android:layout_alignStart="@id/section_icon4"
+                    android:layout_alignEnd="@id/section_icon4"
+                    android:fontFamily="@font/circular_bold"
+                    android:padding="3dp"
+                    android:text="@string/cultural"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/section_icon5"
+                    android:layout_width="61dp"
+                    android:layout_height="62dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/circle_go"
+                    android:backgroundTint="@color/colorAccent"
+                    android:padding="13dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_workshop" />
+
+                <TextView
+                    android:id="@+id/section_title5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/section_icon5"
+                    android:layout_alignStart="@id/section_icon5"
+                    android:layout_alignEnd="@id/section_icon5"
+                    android:fontFamily="@font/circular_bold"
+                    android:paddingTop="3dp"
+                    android:text="Workshop"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp" />
+            </RelativeLayout>
         </LinearLayout>
 
-        <!--        <androidx.recyclerview.widget.RecyclerView-->
-        <!--            android:id="@+id/home_category_list"-->
-        <!--            android:layout_marginTop="10dp"-->
-        <!--            app:layout_constraintTop_toBottomOf="@+id/user_events_title"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent" />-->
 
-        <!--        <androidx.recyclerview.widget.RecyclerView-->
-        <!--            android:id="@+id/home_event_list"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginTop="10dp"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@id/home_category_list" />-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/home_event_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     </LinearLayout>
 

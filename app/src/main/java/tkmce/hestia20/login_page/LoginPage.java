@@ -78,7 +78,7 @@ public class LoginPage extends AppCompatActivity {
         setContentView(R.layout.activity_login_page);
 
         init();
-        Picasso.get()
+        Picasso.with(this)
                 .load(account.getPhotoUrl())
                 .resize(512, 512)
                 .placeholder(R.drawable.landing_placeholder)

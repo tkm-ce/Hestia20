@@ -1,11 +1,8 @@
 package tkmce.hestia20.model;
 
-import android.support.annotation.Keep;
-
 import java.io.Serializable;
 import java.util.Date;
 
-@Keep
 public class EventModel implements Serializable {
 
     private String event_id;
@@ -109,6 +106,10 @@ public class EventModel implements Serializable {
         return reg_fee;
     }
 
+    public void setReg_fee(Integer reg_fee) {
+        this.reg_fee = reg_fee;
+    }
+
     public void setReg_fee(int reg_fee) {
         this.reg_fee = reg_fee;
     }
@@ -191,10 +192,6 @@ public class EventModel implements Serializable {
 
     public void setReg_end(Date reg_end) {
         this.reg_end = reg_end;
-    }
-
-    public void setReg_fee(Integer reg_fee) {
-        this.reg_fee = reg_fee;
     }
 
     public String getFee_type() {

@@ -26,6 +26,7 @@
             android:name=".user_dash.UserHome"
             android:label="@string/title_activity_user_home"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".home_main.UserActivity" />
     </application>
 
 </manifest>

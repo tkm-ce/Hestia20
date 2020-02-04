@@ -1,6 +1,7 @@
 package tkmce.hestia20.model;
 
-import android.support.annotation.Keep;
+
+import androidx.annotation.Keep;
 
 import java.io.Serializable;
 

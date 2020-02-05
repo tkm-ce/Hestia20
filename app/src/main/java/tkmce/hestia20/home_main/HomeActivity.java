@@ -1,29 +1,29 @@
 package tkmce.hestia20.home_main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
-
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
-
-import java.util.ArrayList;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+
+import java.util.ArrayList;
+
 import tkmce.hestia20.Adapter.EventListAdapter;
-import tkmce.hestia20.Adapter.TopEventAdapter;
 import tkmce.hestia20.R;
 import tkmce.hestia20.model.EventBasicModel;
-import tkmce.hestia20.model.EventModel;
+import tkmce.hestia20.user_dash.UserHome;
 
 public class HomeActivity extends AppCompatActivity {
 
     private DrawerLayout drawer;
     private ImageButton menu_btn;
-    private ArrayList<EventModel> topEvents = new ArrayList<>();
     private ArrayList<EventBasicModel> allEvents = new ArrayList<>();
     private BottomSheetBehavior bottomSheetBehavior;
 
@@ -43,14 +43,14 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        prepareData();
-        //Setting topEventList
-        RecyclerView topEventsList = findViewById(R.id.events_featured_recycler);
-        TopEventAdapter topEventAdapter = new TopEventAdapter(topEvents, this);
-        RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), RecyclerView.HORIZONTAL, false);
-        topEventsList.setLayoutManager(linearLayoutManager);
-        topEventsList.setAdapter(topEventAdapter);
+        findViewById(R.id.boarding_profile_img).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), UserHome.class));
+            }
+        });
 
+        prepareData();
 
         //Setting allEventList
         RecyclerView allEventList = findViewById(R.id.home_event_list);
@@ -68,17 +68,6 @@ public class HomeActivity extends AppCompatActivity {
 
 
     private void prepareData() {
-        EventModel sample = new EventModel();
-        sample.setTitle("Extra");
-        sample.setImg("https://square.github.io/picasso/static/icon-github.png");
-        sample.setFile1("12/02/2022");
-        topEvents.add(sample);
-        topEvents.add(sample);
-        topEvents.add(sample);
-        topEvents.add(sample);
-        topEvents.add(sample);
-        topEvents.add(sample);
-
         EventBasicModel sample1 = new EventBasicModel();
         sample1.setTitle("Extra");
         sample1.setImg("https://square.github.io/picasso/static/icon-github.png");

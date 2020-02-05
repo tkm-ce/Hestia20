@@ -111,7 +111,7 @@ public class LoginPage extends AppCompatActivity {
 
         StringRequest stringRequest = new StringRequest(
                 Request.Method.POST,
-                "https://www.hestia.live/app_api/InsertNewUser",
+                "InsertNewUser",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

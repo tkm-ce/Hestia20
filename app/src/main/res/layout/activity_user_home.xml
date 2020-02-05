@@ -8,6 +8,4 @@
 
     <include layout="@layout/content_user_home" />
 
-    <include layout="@layout/bottom_sheet_accommodation" />
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

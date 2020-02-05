@@ -1,23 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/accommodation_bottom_sheet"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/add_bg"
-    android:backgroundTint="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="16dp"
-    app:behavior_hideable="true"
-    app:behavior_peekHeight="0dp"
-    app:layout_behavior="@string/bottom_sheet_behavior">
+    android:background="@drawable/user_sheet_bg"
+    android:padding="20dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:fontFamily="@font/circular_bold"
-        android:text="Registered for dates" />
+        android:text="Registered dates" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -81,5 +76,4 @@
             android:textColor="@android:color/white" />
 
     </LinearLayout>
-
 </LinearLayout>

@@ -32,4 +32,6 @@
     <string name="technical">Technical</string>
     <string name="general">General</string>
     <string name="cultural">Cultural</string>
+    <string name="error_toast">Can\'t retrieve data at the moment</string>
+    <string name="workshop">Workshop</string>
 </resources>

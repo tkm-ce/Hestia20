@@ -32,4 +32,11 @@ dependencies {
     implementation 'com.airbnb.android:lottie:3.0.7'
     implementation 'com.ms-square:expandableTextView:0.1.4'
     implementation 'com.squareup.picasso:picasso:2.3.2'
+    implementation 'com.android.volley:volley:1.1.0'
+    implementation 'com.airbnb.android:lottie:3.0.7'
+
+    implementation 'com.ethanhua:skeleton:1.1.2'
+    implementation 'io.supercharge:shimmerlayout:2.1.0'
+
+
 }

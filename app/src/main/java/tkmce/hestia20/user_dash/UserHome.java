@@ -25,6 +25,7 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.snackbar.Snackbar;
+import com.squareup.picasso.Picasso;
 
 import net.glxn.qrgen.android.QRCode;
 
@@ -71,9 +72,16 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
         account = GoogleSignIn.getLastSignedInAccount(this);
 
         TextView title = findViewById(R.id.user_name);
-        TextView college_name = findViewById(R.id.user_college); // TODO: Add college name
-        if (account != null)
+
+        if (account != null) {
             title.setText(String.format("Hi, %s", account.getDisplayName()));
+
+            Picasso.with(this)
+                    .load(account.getPhotoUrl())
+                    .resize(400, 400)
+                    .placeholder(R.drawable.landing_placeholder)
+                    .centerCrop();
+        }
         noEvents = findViewById(R.id.no_events_registered);
         imgQR = findViewById(R.id.imgQR);
 
@@ -133,6 +141,10 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
                     public void onResponse(String response) {
                         try {
                             String hash = new JSONObject(response).getString("hashcode");
+                            String coll_name = new JSONObject(response).getString(Constants.KEY_COLLEGE);
+
+                            TextView college_name = findViewById(R.id.user_college);
+                            college_name.setText(coll_name);
 
                             qr_file = QRCode.from(hash).withSize(250, 250).file();
                             Bitmap qr_bitmap = decodeFile(qr_file, 250);

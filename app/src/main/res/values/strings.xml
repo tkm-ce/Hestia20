@@ -28,8 +28,8 @@
     <string name="icon_arrow">icon_arrow</string>
     <string name="icon">icon</string>
     <string name="all_events">ALL EVENTS</string>
-    <string name="welcome">Hi, %s</string>
-
-    <string name="fill_all_details">Fill in all the fields</string>
-    <string name="network_error">Network Error Occurred</string>
+    <string name="online">Online</string>
+    <string name="technical">Technical</string>
+    <string name="general">General</string>
+    <string name="cultural">Cultural</string>
 </resources>

@@ -170,7 +170,12 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private boolean isProfileComplete(@NonNull String response) {
+        if (response.equals("false")) {
+            return false;
+        }
+
         try {
+            Log.d(TAG, "isProfileComplete: ");
             JSONObject details = new JSONObject(response);
             if (!"null".equals(details.optString(Constants.KEY_COLLEGE)) &&
                     !"null".equals(details.optString(KEY_PHONE)))

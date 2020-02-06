@@ -14,20 +14,20 @@
             android:name=".home_main.HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".login_page.LoginPage" />
-        <activity android:name=".login_page.SplashActivity"></activity>
+        <activity android:name=".login_page.SplashActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
         <activity
             android:name=".user_dash.UserHome"
             android:label="@string/title_activity_user_home"
             android:theme="@style/AppTheme.NoActionBar" />
-
-
         <activity android:name=".home_main.AboutActivity" />
         <activity android:name=".home_main.SponsorsActivity" />
     </application>

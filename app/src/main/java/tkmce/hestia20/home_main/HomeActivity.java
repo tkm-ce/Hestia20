@@ -1,11 +1,18 @@
 package tkmce.hestia20.home_main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.android.volley.Request;
@@ -22,22 +29,17 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import tkmce.hestia20.Adapter.EventListAdapter;
 import tkmce.hestia20.Adapter.TopEventAdapter;
 import tkmce.hestia20.R;
 import tkmce.hestia20.model.EventBasicModel;
-import tkmce.hestia20.model.EventModel;
+import tkmce.hestia20.user_dash.UserHome;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "Error:";
     private DrawerLayout drawer;
-    private ArrayList<EventModel> topEvents = new ArrayList<>();
+    private ArrayList<EventBasicModel> topEvents = new ArrayList<>();
     private ArrayList<EventBasicModel> allEvents = new ArrayList<>();
     private BottomSheetBehavior bottomSheetBehavior;
     private ImageView section1;
@@ -64,6 +66,27 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View v) {
                 drawer.openDrawer(GravityCompat.START);
+            }
+        });
+
+        findViewById(R.id.boarding_profile_img).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), UserHome.class));
+            }
+        });
+
+        findViewById(R.id.about_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), AboutActivity.class));
+            }
+        });
+
+        findViewById(R.id.sponsors_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), SponsorsActivity.class));
             }
         });
 
@@ -119,7 +142,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private void prepareData() {
-        EventModel sample = new EventModel();
+        EventBasicModel sample = new EventBasicModel();
         sample.setTitle("Extra");
         sample.setImg("https://square.github.io/picasso/static/icon-github.png");
         sample.setFile1("12/02/2022");

@@ -50,8 +50,13 @@ public class LoginPage extends AppCompatActivity {
     private GoogleSignInAccount account;
     private LottieAnimationView progress;
 
+//    private VideoView videoView;
+
     private void init() {
         account = GoogleSignIn.getLastSignedInAccount(this);
+
+//        videoView = findViewById(R.id.mVideoView);
+//        setupVideoBg();
 
         profileImg = findViewById(R.id.boarding_profile_img);
         displayName = findViewById(R.id.boarding_name);
@@ -71,6 +76,20 @@ public class LoginPage extends AppCompatActivity {
             }
         });
     }
+
+//    private void setupVideoBg() {
+//        Uri uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.hestia_bg);
+//        videoView.setVideoURI(uri);
+//        videoView.start();
+//
+//        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+//            @Override
+//            public void onPrepared(MediaPlayer mediaPlayer) {
+//                mediaPlayer.setLooping(true);
+//
+//            }
+//        });
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

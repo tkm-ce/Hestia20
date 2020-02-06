@@ -31,7 +31,13 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.2.0-alpha01'
     implementation 'com.airbnb.android:lottie:3.0.7'
     implementation 'com.ms-square:expandableTextView:0.1.4'
+
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
+    implementation 'com.google.android.gms:play-services-vision:17.0.2'
+    implementation 'com.android.volley:volley:1.1.1'
+
     implementation 'com.squareup.picasso:picasso:2.3.2'
+    implementation 'com.github.kenglxn.QRGen:android:2.6.0'
     implementation 'com.android.volley:volley:1.1.0'
     implementation 'com.airbnb.android:lottie:3.0.7'
 

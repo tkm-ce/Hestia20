@@ -50,6 +50,20 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.about_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), AboutActivity.class));
+            }
+        });
+
+        findViewById(R.id.sponsors_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), SponsorsActivity.class));
+            }
+        });
+
         prepareData();
 
         //Setting allEventList

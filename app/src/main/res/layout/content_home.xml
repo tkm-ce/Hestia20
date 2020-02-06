@@ -154,6 +154,7 @@
         <!--</LinearLayout>-->
 
         <LinearLayout
+            android:baselineAligned="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -169,10 +170,10 @@
                 <ImageView
                     android:id="@+id/section_icon1"
                     android:layout_width="62dp"
+                    android:contentDescription="@string/icon"
                     android:layout_height="62dp"
                     android:layout_gravity="center_horizontal"
                     android:background="@drawable/circle_go"
-                    android:backgroundTint="@color/colorAccent"
                     android:padding="13dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_gear" />
@@ -199,12 +200,12 @@
                 android:gravity="center">
 
                 <ImageView
+                    android:contentDescription="@string/icon"
                     android:id="@+id/section_icon2"
                     android:layout_width="62dp"
                     android:layout_height="62dp"
                     android:layout_gravity="center_horizontal"
                     android:background="@drawable/circle_go"
-                    android:backgroundTint="@color/colorAccent"
                     android:padding="13dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_online" />
@@ -231,12 +232,12 @@
                 android:gravity="center">
 
                 <ImageView
+                    android:contentDescription="@string/icon"
                     android:id="@+id/section_icon3"
                     android:layout_width="62dp"
                     android:layout_height="62dp"
                     android:layout_gravity="center_horizontal"
                     android:background="@drawable/circle_go"
-                    android:backgroundTint="@color/colorAccent"
                     android:padding="13dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_general" />
@@ -265,10 +266,10 @@
                 <ImageView
                     android:id="@+id/section_icon4"
                     android:layout_width="62dp"
+                    android:contentDescription="@string/icon"
                     android:layout_height="62dp"
                     android:layout_gravity="center_horizontal"
                     android:background="@drawable/circle_go"
-                    android:backgroundTint="@color/colorAccent"
                     android:padding="13dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_music" />
@@ -297,10 +298,10 @@
                 <ImageView
                     android:id="@+id/section_icon5"
                     android:layout_width="61dp"
+                    android:contentDescription="@string/icon"
                     android:layout_height="62dp"
                     android:layout_gravity="center_horizontal"
                     android:background="@drawable/circle_go"
-                    android:backgroundTint="@color/colorAccent"
                     android:padding="13dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_workshop" />
@@ -314,12 +315,20 @@
                     android:layout_alignEnd="@id/section_icon5"
                     android:fontFamily="@font/circular_bold"
                     android:paddingTop="3dp"
-                    android:text="Workshop"
+                    android:text="@string/workshop"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
                     android:textSize="12sp" />
             </RelativeLayout>
         </LinearLayout>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/home_load_anim"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/load_new" />
 
 
         <androidx.recyclerview.widget.RecyclerView

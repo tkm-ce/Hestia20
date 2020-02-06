@@ -51,7 +51,7 @@
             android:paddingEnd="10dp"
             android:textColor="#141414"
             android:textSize="17sp"
-            tools:text="Event name" />
+            android:text="@string/icon" />
 
         <TextView
             android:id="@+id/event_date"

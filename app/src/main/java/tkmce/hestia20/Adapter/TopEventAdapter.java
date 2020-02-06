@@ -7,22 +7,23 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.RecyclerView;
 import tkmce.hestia20.R;
-import tkmce.hestia20.model.EventModel;
+import tkmce.hestia20.model.EventBasicModel;
 
 public class TopEventAdapter extends RecyclerView.Adapter<TopEventAdapter.ViewHolder> {
-    View view;
-    ArrayList<EventModel> events;
-    Activity context;
+    private View view;
+    private ArrayList<EventBasicModel> events;
+    private Activity context;
 
-    public TopEventAdapter(ArrayList<EventModel> events, Activity context) {
+    public TopEventAdapter(ArrayList<EventBasicModel> events, Activity context) {
         this.events = events;
         this.context = context;
     }
@@ -70,5 +71,9 @@ public class TopEventAdapter extends RecyclerView.Adapter<TopEventAdapter.ViewHo
             title = itemView.findViewById(R.id.user_event_row_title);
             date = itemView.findViewById(R.id.user_event_row_date);
         }
+    }
+
+    public interface OnRowClickedListener {
+        void onRowClicked(int i);
     }
 }

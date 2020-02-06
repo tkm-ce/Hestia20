@@ -43,6 +43,7 @@
             app:cardUseCompatPadding="true">
 
             <TextView
+                android:id="@+id/sponsors_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="21dp"
@@ -54,6 +55,7 @@
                 android:textSize="17sp" />
 
             <TextView
+                android:id="@+id/about_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="51dp"

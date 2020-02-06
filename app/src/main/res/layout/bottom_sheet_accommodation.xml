@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/user_sheet_bg"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:fontFamily="@font/circular_bold"
+        android:text="Registered dates" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:orientation="horizontal">
+
+        <CheckedTextView
+            android:id="@+id/day_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/day_btn_bg"
+            android:checked="true"
+            android:fontFamily="@font/ave_med"
+            android:padding="7dp"
+            android:tag="03-28"
+            android:text="March 28"
+            android:textColor="@android:color/white" />
+
+        <CheckedTextView
+            android:id="@+id/day_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:checked="true"
+            android:background="@drawable/day_btn_bg"
+            android:fontFamily="@font/ave_med"
+            android:padding="7dp"
+            android:tag="03-29"
+            android:text="March 29"
+            android:textColor="@android:color/white" />
+
+        <CheckedTextView
+            android:id="@+id/day_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/day_btn_bg"
+            android:fontFamily="@font/ave_med"
+            android:padding="7dp"
+            android:tag="03-30"
+            android:text="March 30"
+            android:textColor="@android:color/white" />
+
+        <CheckedTextView
+            android:id="@+id/day_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/day_btn_bg"
+            android:fontFamily="@font/ave_med"
+            android:padding="7dp"
+            android:tag="03-31"
+            android:text="March 31"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+</LinearLayout>

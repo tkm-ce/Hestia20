@@ -28,10 +28,15 @@
     <string name="icon_arrow">icon_arrow</string>
     <string name="icon">icon</string>
     <string name="all_events">ALL EVENTS</string>
+    <string name="welcome">Hey, %s</string>
+
+    <string name="fill_all_details">Fill in all the fields</string>
+    <string name="network_error">Network Error Occurred</string>
     <string name="online">Online</string>
     <string name="technical">Technical</string>
     <string name="general">General</string>
     <string name="cultural">Cultural</string>
+    <string name="about_hestia">Hestia is a National level Techno Cultural fest organized by TKM College of Engineering in Feb 27- March 1 2020.\n\nThe architecture department of the college has planned to formulate a series of creative workshops as the part of HESTIA\'20 on 27, 28, 29 and 30th  of March 2020. \n\nThe workshops provide freedom for connecting the key people to establish fresh thinking about an idea.</string>
     <string name="error_toast">Can\'t retrieve data at the moment</string>
     <string name="workshop">Workshop</string>
 </resources>

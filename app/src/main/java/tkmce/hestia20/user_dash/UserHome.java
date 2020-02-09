@@ -22,6 +22,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.snackbar.Snackbar;
@@ -64,6 +65,8 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
 
     private AlertDialog dialog;
 
+    private ShimmerFrameLayout shimmer1, shimmer2 ;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +75,9 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
         account = GoogleSignIn.getLastSignedInAccount(this);
 
         TextView title = findViewById(R.id.user_name);
+
+        shimmer1 = findViewById(R.id.event_shimmer);
+        shimmer2 = findViewById(R.id.all_events_shimmer);
 
         if (account != null) {
             title.setText(String.format("Hi, %s", account.getDisplayName()));
@@ -218,6 +224,10 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        // Stopping Shimmer Effect's animation after data is loaded to ListView
+                        shimmer2.stopShimmerAnimation();
+                        shimmer2.setVisibility(View.GONE);
+
                         regEvents.clear();
                         parseResponse(response, i);
                     }

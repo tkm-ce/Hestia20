@@ -44,4 +44,5 @@ dependencies {
     implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'
 
     implementation 'com.github.kenglxn.QRGen:android:2.6.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
 }

@@ -1,6 +1,7 @@
 package tkmce.hestia20.Adapter;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,17 +14,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import tkmce.hestia20.R;
 import tkmce.hestia20.model.EventBasicModel;
 
 public class TopEventAdapter extends RecyclerView.Adapter<TopEventAdapter.ViewHolder> {
     private View view;
-    private ArrayList<EventBasicModel> events;
+    private List<EventBasicModel> events;
     private Activity context;
 
-    public TopEventAdapter(ArrayList<EventBasicModel> events, Activity context) {
+    public TopEventAdapter(List<EventBasicModel> events, Activity context) {
         this.events = events;
         this.context = context;
     }
@@ -40,8 +41,13 @@ public class TopEventAdapter extends RecyclerView.Adapter<TopEventAdapter.ViewHo
         holder.title.setText(events.get(position).getTitle());
         holder.date.setText(events.get(position).getFile1());
 
+        Log.d("yoo", "onBindViewHolder: " + "https://www.hestia.live/assets/uploads/event_images/" + events.get(position).getImg());
+
         Picasso.with(context)
-                .load(events.get(position).getImg())
+                .load("https://www.hestia.live/assets/uploads/event_images/" + events.get(position).getImg())
+                .resize(300,300)
+                .centerCrop()
+                .placeholder(R.drawable.landing_placeholder)
                 .into(holder.img);
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {

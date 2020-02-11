@@ -21,7 +21,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -50,13 +53,20 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private LottieAnimationView anim;
     private RecyclerView allEventList;
 
+    private GoogleSignInAccount account;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-
         init();
+        account = GoogleSignIn.getLastSignedInAccount(this);
+
+        ImageView boarding_profile_img = findViewById(R.id.boarding_profile_img);
+
+        Picasso.with(this).load(account.getPhotoUrl()).into(boarding_profile_img);
+
         section1.performClick();
         //Setting menuBtn
         drawer = findViewById(R.id.drawer_layout);

@@ -131,11 +131,11 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/boarding_profile_img"
-            android:layout_width="38dp"
-            android:layout_height="56dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="12dp"
-            android:src="@mipmap/ic_launcher"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="12dp"
+            android:src="@color/background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

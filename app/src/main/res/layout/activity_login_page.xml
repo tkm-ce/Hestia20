@@ -62,8 +62,8 @@
         android:layout_marginStart="25dp"
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="40dp"
-        android:backgroundTint="#fff"
         android:background="@drawable/button_circle"
+        android:backgroundTint="#fff"
         android:drawableEnd="@drawable/ic_arrow_forward"
         android:fontFamily="@font/circular_bold"
         android:gravity="center_vertical"
@@ -121,17 +121,19 @@
         app:layout_constraintTop_toBottomOf="@+id/boarding_profile_img"
         tools:text="Hey, Dummy" />
 
-    <!--    <com.airbnb.lottie.LottieAnimationView-->
-    <!--        android:id="@+id/progress"-->
-    <!--        android:layout_width="80dp"-->
-    <!--        android:layout_height="80dp"-->
-    <!--        android:layout_marginTop="25dp"-->
-    <!--        android:visibility="gone"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/boarding_submit"-->
-    <!--        app:lottie_autoPlay="false"-->
-    <!--        app:lottie_loop="true"-->
-    <!--        app:lottie_rawRes="@raw/loading" />-->
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/progress_login"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/boarding_submit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/boarding_college_field"
+        app:layout_constraintVertical_bias="0.907"
+        app:lottie_autoPlay="false"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/loading" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

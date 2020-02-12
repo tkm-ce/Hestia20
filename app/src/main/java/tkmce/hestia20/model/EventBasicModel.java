@@ -1,5 +1,7 @@
 package tkmce.hestia20.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 public class EventBasicModel implements Serializable {
@@ -8,6 +10,7 @@ public class EventBasicModel implements Serializable {
     private String cat_id;
     private String title;
     private String prize;
+    @SerializedName("image_name")
     private String img;
     private String file1;
     private String file2;

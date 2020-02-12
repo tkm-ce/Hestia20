@@ -33,6 +33,7 @@ import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import tkmce.hestia20.R;
+import tkmce.hestia20.home_main.HomeActivity;
 
 import static tkmce.hestia20.Constants.KEY_COLLEGE;
 import static tkmce.hestia20.Constants.KEY_EMAIL;
@@ -64,7 +65,7 @@ public class LoginPage extends AppCompatActivity {
         collegeField = findViewById(R.id.boarding_college_field);
         btnSubmit = findViewById(R.id.boarding_submit);
 
-        progress = findViewById(R.id.progress);
+        progress = findViewById(R.id.progress_login);
 
         collegeField.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -130,11 +131,11 @@ public class LoginPage extends AppCompatActivity {
 
         StringRequest stringRequest = new StringRequest(
                 Request.Method.POST,
-                "InsertNewUser",
+                "https://www.hestia.live/app_api/InsertNewUser",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        startActivity(new Intent(getApplicationContext(), LoginPage.class));
+                        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                         finish();
                     }
                 },

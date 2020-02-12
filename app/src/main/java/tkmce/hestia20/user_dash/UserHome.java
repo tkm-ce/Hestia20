@@ -41,6 +41,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import tkmce.hestia20.Adapter.TopEventAdapter;
 import tkmce.hestia20.Constants;
 import tkmce.hestia20.R;
@@ -64,24 +65,27 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
 
     private AlertDialog dialog;
 
+//    private ShimmerFrameLayout shimmer1;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_home);
 
+        CircleImageView user_pic = findViewById(R.id.user_pic);
         account = GoogleSignIn.getLastSignedInAccount(this);
 
         TextView title = findViewById(R.id.user_name);
 
-        if (account != null) {
-            title.setText(String.format("Hi, %s", account.getDisplayName()));
+//        shimmer1 = findViewById(R.id.event_shimmer);
 
-            Picasso.with(this)
-                    .load(account.getPhotoUrl())
-                    .resize(400, 400)
-                    .placeholder(R.drawable.landing_placeholder)
-                    .centerCrop();
-        }
+        title.setText(String.format("Hi, %s", account.getDisplayName()));
+
+        Picasso.with(this)
+                .load(account.getPhotoUrl())
+                .placeholder(R.drawable.landing_placeholder)
+                .into(user_pic);
+
         noEvents = findViewById(R.id.no_events_registered);
         imgQR = findViewById(R.id.imgQR);
 
@@ -117,6 +121,13 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
                 showLogoutDialog();
             }
         });
+
+        findViewById(R.id.user_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     public void showAccomodationDialog() {
@@ -147,6 +158,7 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
                             college_name.setText(coll_name);
 
                             qr_file = QRCode.from(hash).withSize(250, 250).file();
+                            Log.d(TAG, "onResponse: " + hash);
                             Bitmap qr_bitmap = decodeFile(qr_file, 250);
                             imgQR.setImageBitmap(qr_bitmap);
                             imgQR.setVisibility(VISIBLE);
@@ -218,6 +230,10 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        // Stopping Shimmer Effect's animation after data is loaded to ListView
+//                        shimmer1.stopShimmerAnimation();
+//                        shimmer1.setVisibility(View.GONE);
+
                         regEvents.clear();
                         parseResponse(response, i);
                     }

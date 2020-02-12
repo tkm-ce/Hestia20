@@ -10,6 +10,7 @@
     <string name="yes">Yes</string>
     <string name="accommodation_confirmation_text">Dates confirmed for:</string>
     <string name="okay">Okay</string>
+    <string name="addParticipantAdv">Add participant %d/%d</string>
     <string name="icon_bed">icon_bed</string>
     <string name="title_activity_home_main">HomeActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -39,4 +40,17 @@
     <string name="about_hestia">Hestia is a National level Techno Cultural fest organized by TKM College of Engineering in Feb 27- March 1 2020.\n\nThe architecture department of the college has planned to formulate a series of creative workshops as the part of HESTIA\'20 on 27, 28, 29 and 30th  of March 2020. \n\nThe workshops provide freedom for connecting the key people to establish fresh thinking about an idea.</string>
     <string name="error_toast">Can\'t retrieve data at the moment</string>
     <string name="workshop">Workshop</string>
+    <string name="schedule">Schedule</string>
+    <string name="data_1">28th April 10:00–11:00 (Round 1) 29 April 10:00–01:00 (Round 2) 29th April 03:00–05:00 (Final Round)</string>
+    <string name="registration_fee">Registration Fee</string>
+    <string name="contact_details">Contact Details</string>
+    <string name="free">Free</string>
+    <string name="prizes_worth">Prizes worth</string>
+    <string name="addParticipant">Add Participant 1 / %d</string>
+    <string name="buy_ticket">Buy Ticket</string>
+    <string name="booked">Booked</string>
+    <string name="sold_out">Sold out</string>
+    <string name="reg_closed">Closed</string>
+    <string name="starts_on">Starts on</string>
+    <string name="retry">RETRY</string>
 </resources>

@@ -108,6 +108,13 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
+        findViewById(R.id.calendar_items).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), ScheduleActivity.class));
+            }
+        });
+
 //        prepareData();
 
         //Setting topEventList

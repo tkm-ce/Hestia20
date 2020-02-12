@@ -26,6 +26,7 @@
         <activity android:name=".user_dash.UserHome" />
         <activity android:name=".home_main.AboutActivity" />
         <activity android:name=".home_main.SponsorsActivity" />
+        <activity android:name=".home_main.ScheduleActivity" />
     </application>
 
 </manifest>

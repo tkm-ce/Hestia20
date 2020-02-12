@@ -315,6 +315,19 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
 
 
 //    @Override
+//    public void onResume() {
+//        super.onResume();
+//        shimmer_top_events.startShimmerAnimation();
+//    }
+//
+//    @Override
+//    protected void onPause() {
+//        shimmer_top_events.stopShimmerAnimation();
+//        super.onPause();
+//    }
+
+
+//    @Override
 //    public void onUpdated(int i) {
 //        fetchEvents(i);
 //    }

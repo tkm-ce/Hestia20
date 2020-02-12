@@ -3,6 +3,8 @@
     package="tkmce.hestia20">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -29,7 +31,7 @@
         <activity android:name=".home_main.SponsorsActivity" />
         <activity android:name=".user_dash.UserHome" />
         <activity android:name=".EventDetailed.ActivityRegister"></activity>
-        <activity android:name=".EventDetailed.EventDetailed">
+        <activity android:name=".EventDetailed.EventDetailed" />
 
     </application>
 

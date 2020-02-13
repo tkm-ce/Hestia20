@@ -9,12 +9,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.airbnb.lottie.LottieAnimationView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -38,13 +32,18 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import tkmce.hestia20.Adapter.EventListAdapter;
 import tkmce.hestia20.Adapter.TopEventAdapter;
 import tkmce.hestia20.R;
 import tkmce.hestia20.model.EventBasicModel;
 import tkmce.hestia20.user_dash.UserHome;
 
-public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
+public class HomeActivity extends AppCompatActivity implements View.OnClickListener, TopEventAdapter.OnRowClickedListener {
 
     private static final String TAG = "Error:";
     private DrawerLayout drawer;
@@ -211,7 +210,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         shimmer_top_events.setVisibility(View.GONE);
 
         RecyclerView topEventsList = findViewById(R.id.events_featured_recycler);
-        TopEventAdapter topEventAdapter = new TopEventAdapter(top_events, this);
+        TopEventAdapter topEventAdapter = new TopEventAdapter(top_events, this, this);
         RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), RecyclerView.HORIZONTAL, false);
         topEventsList.setLayoutManager(linearLayoutManager);
         topEventsList.setAdapter(topEventAdapter);
@@ -292,5 +291,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     protected void onPause() {
         shimmer_top_events.stopShimmerAnimation();
         super.onPause();
+    }
+
+    @Override
+    public void onRowClicked(int i) {
+
     }
 }

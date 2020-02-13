@@ -8,14 +8,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
 import tkmce.hestia20.R;
 import tkmce.hestia20.model.EventBasicModel;
 
@@ -23,10 +22,12 @@ public class TopEventAdapter extends RecyclerView.Adapter<TopEventAdapter.ViewHo
     private View view;
     private List<EventBasicModel> events;
     private Activity context;
+    private OnRowClickedListener listener;
 
-    public TopEventAdapter(List<EventBasicModel> events, Activity context) {
+    public TopEventAdapter(List<EventBasicModel> events, Activity context, OnRowClickedListener listener) {
         this.events = events;
         this.context = context;
+        this.listener = listener;
     }
 
     @NonNull
@@ -50,12 +51,7 @@ public class TopEventAdapter extends RecyclerView.Adapter<TopEventAdapter.ViewHo
                 .placeholder(R.drawable.landing_placeholder)
                 .into(holder.img);
 
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
     }
 
     @Override
@@ -76,7 +72,15 @@ public class TopEventAdapter extends RecyclerView.Adapter<TopEventAdapter.ViewHo
             img = itemView.findViewById(R.id.user_event_row_img);
             title = itemView.findViewById(R.id.user_event_row_title);
             date = itemView.findViewById(R.id.user_event_row_date);
+
+            cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onRowClicked(getAdapterPosition());
+                }
+            });
         }
+
     }
 
     public interface OnRowClickedListener {

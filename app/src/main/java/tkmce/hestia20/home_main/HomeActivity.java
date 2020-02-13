@@ -30,25 +30,22 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import tkmce.hestia20.Adapter.CategoryEventAdapter;
 import tkmce.hestia20.Adapter.EventListAdapter;
 import tkmce.hestia20.Adapter.TopEventAdapter;
 import tkmce.hestia20.R;
 import tkmce.hestia20.model.EventBasicModel;
 import tkmce.hestia20.user_dash.UserHome;
 
-public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
+public class HomeActivity extends AppCompatActivity implements View.OnClickListener, TopEventAdapter.OnRowClickedListener,
+        CategoryEventAdapter.OnRowClickedListener {
 
     private static final String TAG = "Error:";
     private DrawerLayout drawer;
-    private ArrayList<EventBasicModel> topEvents = new ArrayList<>();
     private ArrayList<EventBasicModel> allEvents = new ArrayList<>();
     private BottomSheetBehavior bottomSheetBehavior;
     private ImageView section1;
@@ -70,6 +67,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
         init();
         account = GoogleSignIn.getLastSignedInAccount(this);
+        allEventList = findViewById(R.id.home_event_list);
+
+        //setup anim
+        anim = findViewById(R.id.home_load_anim);
+        anim_toggle(0);
 
         ImageView boarding_profile_img = findViewById(R.id.boarding_profile_img);
 
@@ -136,10 +138,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         //setup bottom sheet
         View bottomSheet = findViewById(R.id.home_bottom_sheet);
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
-
-        //setup anim
-        anim = findViewById(R.id.home_load_anim);
-        anim_toggle(0);
     }
 
     private void anim_toggle(int i) {
@@ -172,7 +170,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             public void run() {
                 getTopEvents();
             }
-        },2500);
+        }, 2500);
     }
 
     private void getTopEvents() {
@@ -218,10 +216,21 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         shimmer_top_events.setVisibility(View.GONE);
 
         RecyclerView topEventsList = findViewById(R.id.events_featured_recycler);
-        TopEventAdapter topEventAdapter = new TopEventAdapter(top_events, this);
+        TopEventAdapter topEventAdapter = new TopEventAdapter(top_events, this, this);
         RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), RecyclerView.HORIZONTAL, false);
         topEventsList.setLayoutManager(linearLayoutManager);
         topEventsList.setAdapter(topEventAdapter);
+    }
+
+    private void parseCategoricalEvents(List<EventBasicModel> top_events) {
+        shimmer_top_events.stopShimmerAnimation();
+        shimmer_top_events.setVisibility(View.GONE);
+
+        CategoryEventAdapter topEventAdapter = new CategoryEventAdapter(top_events, this, this);
+        RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), RecyclerView.VERTICAL, false);
+        allEventList.setLayoutManager(linearLayoutManager);
+        allEventList.setAdapter(topEventAdapter);
+        anim_toggle(0);
     }
 
 
@@ -236,7 +245,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         if (v == section1) {
             toggleColor(section2, section3, section4, section5);
             section1.setBackgroundResource(R.drawable.circle_go);
-            //getCategoryData(1);
+            getCategoryData(1);
         } else if (v == section2) {
             toggleColor(section1, section3, section4, section5);
             section2.setBackgroundResource(R.drawable.circle_go);
@@ -258,24 +267,17 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     private void getCategoryData(int i) {
         anim_toggle(1);
-        String url = "https:// string_url/" + i;
+        String url = "https://www.hestia.live/Admin_API/categoryevents/" + i;
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        StringRequest request = new StringRequest(Request.Method.POST, url,
+        StringRequest request = new StringRequest(Request.Method.GET, url,
 
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
-                        try {
-                            JSONObject jsonObject = new JSONObject(s);
-                            JSONArray initArray = new JSONArray(jsonObject);
-                            for (int i = 0; i < initArray.length(); i++) {
-                                JSONObject item = initArray.getJSONObject(i);
-
-                            }
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                        Type listType = new TypeToken<List<EventBasicModel>>() {
+                        }.getType();
+                        List<EventBasicModel> top_events = new Gson().fromJson(s, listType);
+                        parseCategoricalEvents(top_events);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -285,7 +287,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
         requestQueue.add(request);
-
     }
 
 
@@ -300,4 +301,43 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         shimmer_top_events.stopShimmerAnimation();
         super.onPause();
     }
+
+    @Override
+    public void onRowClicked(String event_id) {
+//        String url = "https:// string_url/" + i;
+//        RequestQueue requestQueue = Volley.newRequestQueue(this);
+//        StringRequest request = new StringRequest(Request.Method.POST, url,
+//
+//                new Response.Listener<String>() {
+//                    @Override
+//                    public void onResponse(String s) {
+//                        try {
+//                            JSONObject jsonObject = new JSONObject(s);
+//                            JSONArray initArray = new JSONArray(jsonObject);
+//                            for (int i = 0; i < initArray.length(); i++) {
+//                                JSONObject item = initArray.getJSONObject(i);
+//
+//                            }
+//
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError volleyError) {
+//                Log.e(TAG, "onErrorResponse: ", volleyError.getCause());
+//                Toast.makeText(HomeActivity.this, getString(R.string.error_toast), Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//        requestQueue.add(request);
+//
+//
+//        Intent intent = new Intent(this, EventDetails.class);
+//        Bundle bundle = new Bundle();
+//        bundle.putSerializable(EventDetails.EVENT, event);
+//        intent.putExtras(bundle);
+//        startActivity(intent);
+    }
+
 }

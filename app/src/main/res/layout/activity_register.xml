@@ -1,9 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".EventDetailed.ActivityRegister">
+    tools:context=".home_main.ActivityRegister">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:layout_marginTop="27dp"
+                android:layout_marginStart="28dp"
+                android:textColor="@android:color/white"
+                android:fontFamily="@font/ave_heavy"
+                android:text="@string/event_registration" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginStart="27dp"
+            android:layout_marginEnd="27dp"
+            android:background="@color/fieldBg"
+            android:layout_marginBottom="25dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:layout_marginTop="7dp"
+            android:layout_marginStart="28dp"
+            android:textColor="@android:color/white"
+            android:fontFamily="@font/ave_med"
+            android:text="@string/participant_list" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/mail_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="28dp"
+            android:textColor="@android:color/white"
+            android:fontFamily="@font/ave_med"
+            android:text="@string/select_accommodation_day" />
+
+        <LinearLayout
+            android:layout_marginStart="19dp"
+            android:layout_marginEnd="19dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckedTextView
+                android:id="@+id/check_day_1"
+                android:textColor="@android:color/white"
+                android:layout_margin="5dp"
+                android:padding="7dp"
+                android:fontFamily="@font/ave_med"
+                android:background="@drawable/day_btn_bg"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/day_1" />
+
+            <CheckedTextView
+                android:id="@+id/check_day_2"
+                android:textColor="@android:color/white"
+                android:fontFamily="@font/ave_med"
+                android:layout_margin="5dp"
+                android:padding="7dp"
+                android:background="@drawable/day_btn_bg"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/day_2" />
+
+            <CheckedTextView
+                android:id="@+id/check_day_3"
+                android:textColor="@android:color/white"
+                android:fontFamily="@font/ave_med"
+                android:layout_margin="5dp"
+                android:padding="7dp"
+                android:background="@drawable/day_btn_bg"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/day_3" />
+
+            <CheckedTextView
+                android:id="@+id/check_day_4"
+                android:textColor="@android:color/white"
+                android:fontFamily="@font/ave_med"
+                android:layout_margin="5dp"
+                android:padding="7dp"
+                android:background="@drawable/day_btn_bg"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/day_4" />
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginStart="27dp"
+            android:layout_marginEnd="27dp"
+            android:background="@color/fieldBg" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="28dp"
+            android:textColor="@android:color/white"
+            android:fontFamily="@font/ave_med"
+            android:text="@string/referral_code" />
+
+        <EditText
+            android:id="@+id/reg_refer"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:hint="@string/enter_referral_code_here"
+            android:layout_marginStart="27dp"
+            android:layout_marginEnd="27dp"
+            android:fontFamily="@font/ave_heavy"
+            android:padding="10dp"
+            android:background="@drawable/day_btn_bg" />
+
+        <Button
+            android:id="@+id/reg_submit"
+            android:layout_marginTop="27dp"
+            android:layout_marginStart="27dp"
+            android:layout_marginEnd="27dp"
+            android:text="Submit"
+            android:fontFamily="@font/ave_heavy"
+            android:textColor="@android:color/white"
+            android:textSize="17sp"
+            android:layout_marginBottom="27dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/add_bg" />
+
+    </LinearLayout>
+</ScrollView>

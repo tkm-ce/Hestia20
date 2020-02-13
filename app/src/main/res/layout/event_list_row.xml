@@ -29,13 +29,13 @@
             android:src="@drawable/ic_right_arrow_circle" />
 
 
-            <ImageView
-                android:id="@+id/ordered_product_image"
-                android:layout_width="65dp"
-                android:layout_height="65dp"
-                android:contentDescription="@string/event_image"
-                android:scaleType="centerCrop"
-                android:src="@mipmap/ic_launcher" />
+        <ImageView
+            android:id="@+id/ordered_product_image"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:contentDescription="@string/event_image"
+            android:scaleType="centerCrop"
+            android:src="@drawable/landing_placeholder" />
 
 
         <TextView

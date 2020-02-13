@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -89,7 +88,7 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
         noEvents = findViewById(R.id.no_events_registered);
         imgQR = findViewById(R.id.imgQR);
 
-        adapter = new TopEventAdapter(regEvents, this);
+        adapter = new TopEventAdapter(regEvents, this, this);
         RecyclerView eventsList = findViewById(R.id.registered_events_list);
         eventsList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         eventsList.setAdapter(adapter);
@@ -277,17 +276,14 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
 
             if (regEvents.size() == 0) {
                 noEvents.setVisibility(VISIBLE);
-            } else {
-                onRowClicked(k);
             }
+
+//            else {
+//                onRowClicked(k);
+//            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public void onRowClicked(int i) {
-        Toast.makeText(this, "Clicked on event: " + regEvents.get(i).getTitle(), Toast.LENGTH_SHORT).show();
     }
 
     private void errorOccurred(final String msg) {
@@ -311,6 +307,15 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
 
     private void logoutUser() {
 
+    }
+
+    @Override
+    public void onRowClicked(String event_id) {
+//        Intent intent = new Intent(this, EventDetails.class);
+//        Bundle bundle = new Bundle();
+//        bundle.putSerializable(EventDetails.EVENT, event);
+//        intent.putExtras(bundle);
+//        startActivity(intent);
     }
 
 

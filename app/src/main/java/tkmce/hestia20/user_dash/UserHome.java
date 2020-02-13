@@ -1,6 +1,9 @@
 package tkmce.hestia20.user_dash;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -10,12 +13,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -24,6 +21,10 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
@@ -41,15 +42,22 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import de.hdodenhof.circleimageview.CircleImageView;
 import tkmce.hestia20.Adapter.TopEventAdapter;
 import tkmce.hestia20.Constants;
 import tkmce.hestia20.R;
+import tkmce.hestia20.login_page.SplashActivity;
 import tkmce.hestia20.model.EventBasicModel;
 
 import static android.view.View.VISIBLE;
 
-public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRowClickedListener {
+public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRowClickedListener, BottomSheetLogoutFragment.logoutListener {
 
     private static final String TAG = UserHome.class.getSimpleName();
 
@@ -64,7 +72,8 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
     private GoogleSignInAccount account;
 
     private AlertDialog dialog;
-
+    private File qr_file;
+    private BottomSheetLogoutFragment logoutSheetFragment;
 //    private ShimmerFrameLayout shimmer1;
 
     @Override
@@ -89,12 +98,12 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
         noEvents = findViewById(R.id.no_events_registered);
         imgQR = findViewById(R.id.imgQR);
 
-        adapter = new TopEventAdapter(regEvents, this);
+        adapter = new TopEventAdapter(regEvents, this, this);
         RecyclerView eventsList = findViewById(R.id.registered_events_list);
         eventsList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         eventsList.setAdapter(adapter);
 
-        fetchEvents(0);
+        fetchEvents();
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         dialog = builder.create();
@@ -108,12 +117,6 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
             }
         });
 
-        findViewById(R.id.accommodation_layout).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showAccomodationDialog();
-            }
-        });
 
         findViewById(R.id.user_logout).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,22 +128,18 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
         findViewById(R.id.user_back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                onBackPressed();
             }
         });
     }
 
-    public void showAccomodationDialog() {
-        BottomSheetAccommodationFragment bottomSheetFragment = new BottomSheetAccommodationFragment(this);
-        bottomSheetFragment.show(getSupportFragmentManager(), bottomSheetFragment.getTag());
-    }
 
     public void showLogoutDialog() {
-        BottomSheetLogoutFragment bottomSheetFragment = BottomSheetLogoutFragment.newInstance(this);
-        bottomSheetFragment.show(getSupportFragmentManager(), bottomSheetFragment.getTag());
+        logoutSheetFragment = BottomSheetLogoutFragment.newInstance(this);
+        logoutSheetFragment.show(getSupportFragmentManager(), logoutSheetFragment.getTag());
     }
 
-    File qr_file;
+
 
     private void getBarcodeAccount() {
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -218,7 +217,7 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
         }
     }
 
-    private void fetchEvents(final int i) {
+    private void fetchEvents() {
         if (dialogLoad != null) dialogLoad.dismiss();
         dialogLoad = new ProgressDialog(this);
         dialogLoad.show();
@@ -235,7 +234,7 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
 //                        shimmer1.setVisibility(View.GONE);
 
                         regEvents.clear();
-                        parseResponse(response, i);
+                        parseResponse(response);
                     }
                 },
                 new Response.ErrorListener() {
@@ -257,7 +256,7 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
         queue.add(stringRequest);
     }
 
-    private void parseResponse(String response, int k) {
+    private void parseResponse(String response) {
         try {
             JSONArray registrations = new JSONArray(response);
             for (int i = 0; i < registrations.length(); i++) {
@@ -277,8 +276,6 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
 
             if (regEvents.size() == 0) {
                 noEvents.setVisibility(VISIBLE);
-            } else {
-                onRowClicked(k);
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -300,7 +297,7 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
                         .setAction("Retry", new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                fetchEvents(0);
+                                fetchEvents();
                                 if (imgQR.getVisibility() != VISIBLE) getBarcodeAccount();
                             }
                         });
@@ -309,13 +306,33 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
         });
     }
 
-    private void logoutUser() {
+    //TODO: add logout feature (CLEAR PREFERENCES)
+    @Override
+    public void onLogout() {
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+        GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(getApplicationContext(), gso);
 
+        googleSignInClient.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    SharedPreferences preferences = getSharedPreferences("login_prefs", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.clear();
+                    editor.apply();
+                    startActivity(new Intent(getApplicationContext(), SplashActivity.class));
+                    finish();
+                } else {
+                    Toast.makeText(UserHome.this, "Cannot Logout at the moment", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
-
-//    @Override
-//    public void onUpdated(int i) {
-//        fetchEvents(i);
-//    }
+    @Override
+    public void dismissSheet() {
+        logoutSheetFragment.dismiss();
+    }
 }

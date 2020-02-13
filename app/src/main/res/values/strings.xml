@@ -53,4 +53,9 @@
     <string name="reg_closed">Closed</string>
     <string name="starts_on">Starts on</string>
     <string name="retry">RETRY</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="let_s_go">Let\'s Go</string>
+    <string name="enter_college_name">Enter College Name</string>
+    <string name="enter_phone_no">Enter Phone No.</string>
+    <string name="no_events_registered">No Events Registered</string>
 </resources>

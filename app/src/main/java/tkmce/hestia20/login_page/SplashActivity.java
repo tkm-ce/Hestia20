@@ -2,14 +2,12 @@ package tkmce.hestia20.login_page;
 
 import android.app.LauncherActivity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.android.volley.Request;
@@ -32,6 +30,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import tkmce.hestia20.Constants;
 import tkmce.hestia20.R;
 import tkmce.hestia20.home_main.HomeActivity;
@@ -48,11 +48,18 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
     private View btnLogin;
     private LottieAnimationView progress, noInternet;
     private Snackbar networkSnack;
+    private GoogleSignInAccount account;
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
 
     private void init() {
         progress = findViewById(R.id.progress);
         btnLogin = findViewById(R.id.sign_in_launcher);
+        btnLogin.setVisibility(View.VISIBLE);
         noInternet = findViewById(R.id.noInternet);
+
+        preferences = getSharedPreferences("login_prefs", 0);
+        editor = preferences.edit();
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -81,8 +88,17 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
                         | View.SYSTEM_UI_FLAG_FULLSCREEN);
 
 
+        checkLoggedIn();
         init();
-        attemptLogin();
+        btnLogin.setOnClickListener(this);
+    }
+
+    private void checkLoggedIn() {
+        boolean isLogged = preferences.getBoolean("isLogged", false);
+        if (isLogged) {
+            GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+            loginCompleted(account);
+        }
     }
 
     @Override
@@ -92,7 +108,9 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
             if (resultCode == RESULT_OK) {
                 Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
                 try {
-                    GoogleSignInAccount account = task.getResult(ApiException.class);
+                    account = task.getResult(ApiException.class);
+                    editor.putBoolean("isLogged", true);
+                    editor.apply();
                     loginCompleted(account);
                 } catch (ApiException e) {
                     Log.e(TAG, "Login failed", e);
@@ -127,7 +145,7 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         if (account == null) {
             progress.setVisibility(View.GONE);
-            btnLogin.setOnClickListener(this);
+            //btnLogin.setOnClickListener(this);
             btnLogin.setVisibility(View.VISIBLE);
         } else {
             loginCompleted(account);
@@ -136,6 +154,7 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
 
     private void loginCompleted(final GoogleSignInAccount account) {
         progress.setVisibility(View.VISIBLE);
+        btnLogin.setVisibility(View.GONE);
         RequestQueue queue = Volley.newRequestQueue(this);
 
         StringRequest stringRequest = new StringRequest(

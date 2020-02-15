@@ -18,55 +18,72 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/colorAccent"
+        android:background="@drawable/gradient_bg"
         android:fitsSystemWindows="true">
 
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="19dp"
-            android:layout_marginTop="92dp"
-            android:fontFamily="@font/circular_bold"
-            android:text="@string/app_name"
-            android:textColor="@android:color/white"
-            android:textSize="25sp" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="19dp"
-            android:layout_marginTop="150dp"
-            android:layout_marginEnd="19dp"
-            app:cardBackgroundColor="@android:color/white"
-            app:cardCornerRadius="9dp"
-            app:cardElevation="3dp"
-            app:cardUseCompatPadding="true">
+            <ImageView
+                android:layout_width="95dp"
+                android:layout_height="95dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="60dp"
+                android:src="@raw/logo" />
 
             <TextView
-                android:id="@+id/sponsors_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="21dp"
-                android:fontFamily="@font/ave_heavy"
-                android:paddingStart="15dp"
-                android:paddingEnd="15dp"
-                android:text="@string/our_sponsors"
-                android:textColor="@android:color/black"
-                android:textSize="17sp" />
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/brandon"
+                android:text="@string/app_name"
+                android:textColor="@android:color/white"
+                android:textSize="25sp" />
 
-            <TextView
-                android:id="@+id/about_button"
-                android:layout_width="wrap_content"
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="51dp"
-                android:layout_marginBottom="21dp"
-                android:fontFamily="@font/ave_heavy"
-                android:paddingStart="15dp"
-                android:paddingEnd="15dp"
-                android:text="@string/about_us"
-                android:textColor="@android:color/black"
-                android:textSize="17sp" />
-        </androidx.cardview.widget.CardView>
+                android:layout_marginStart="19dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="19dp"
+                app:cardBackgroundColor="@android:color/white"
+                app:cardCornerRadius="9dp"
+                app:cardElevation="3dp"
+                app:cardUseCompatPadding="true">
+
+                <TextView
+                    android:id="@+id/sponsors_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="21dp"
+                    android:fontFamily="@font/ave_heavy"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:text="@string/our_sponsors"
+                    android:textColor="@android:color/black"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/about_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="51dp"
+                    android:layout_marginBottom="21dp"
+                    android:fontFamily="@font/ave_heavy"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:text="@string/about_us"
+                    android:textColor="@android:color/black"
+                    android:textSize="17sp" />
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
     </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>

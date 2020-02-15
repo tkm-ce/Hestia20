@@ -8,12 +8,10 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.android.volley.Request;
@@ -31,6 +29,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import androidx.appcompat.app.AppCompatActivity;
 import de.hdodenhof.circleimageview.CircleImageView;
 import tkmce.hestia20.R;
 import tkmce.hestia20.home_main.HomeActivity;
@@ -47,7 +46,7 @@ public class LoginPage extends AppCompatActivity {
     private TextView displayName;
     private EditText phoneField;
     private AutoCompleteTextView collegeField;
-    private Button btnSubmit;
+    private RelativeLayout btnSubmit;
     private GoogleSignInAccount account;
     private LottieAnimationView progress;
 

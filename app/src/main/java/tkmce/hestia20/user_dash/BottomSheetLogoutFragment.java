@@ -1,6 +1,5 @@
 package tkmce.hestia20.user_dash;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,19 +10,11 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import tkmce.hestia20.R;
 
 public class BottomSheetLogoutFragment extends BottomSheetDialogFragment {
+    private logoutListener listener;
 
-    private View view;
-    public static BottomSheetLogoutFragment fragment;
-    private Context context;
-
-    private BottomSheetLogoutFragment(Context context) {
-        this.context = context;
-    }
-
-    public static BottomSheetLogoutFragment newInstance(Context context) {
-        Bundle args = new Bundle();
-        fragment = new BottomSheetLogoutFragment(context);
-        fragment.setArguments(args);
+    public static BottomSheetLogoutFragment newInstance(logoutListener listener) {
+        BottomSheetLogoutFragment fragment = new BottomSheetLogoutFragment();
+        fragment.listener = listener;
         return fragment;
     }
 
@@ -36,22 +27,28 @@ public class BottomSheetLogoutFragment extends BottomSheetDialogFragment {
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.logout_prompt_sheet, container, false);
+        View view = inflater.inflate(R.layout.logout_prompt_sheet, container, false);
 
         view.findViewById(R.id.no_logout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                fragment.dismiss();
+                listener.dismissSheet();
             }
         });
 
         view.findViewById(R.id.yes_logout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO: Implement Logout Option
+                listener.onLogout();
             }
         });
 
         return view;
+    }
+
+    public interface logoutListener {
+        void onLogout();
+
+        void dismissSheet();
     }
 }

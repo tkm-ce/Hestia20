@@ -4,16 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/background_dark">
+    android:background="@color/colorPrimaryDark">
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/user_back"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="18dp"
         android:layout_marginTop="23dp"
         android:layout_marginEnd="8dp"
         android:background="@android:color/transparent"
+        android:padding="10dp"
         android:scaleX="1.3"
         android:scaleY="1.3"
         android:src="@drawable/ic_chevron_left_white"
@@ -24,12 +25,12 @@
 
     <RelativeLayout
         android:id="@+id/user_pic_qr"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/user_back"
-        android:layout_width="100dp"
-        android:layout_height="100dp">
+        app:layout_constraintTop_toBottomOf="@id/user_back">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/user_pic"
@@ -39,11 +40,12 @@
 
         <ImageView
             android:id="@+id/imgQR"
-            android:src="@color/white"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_width="32dp"
-            android:layout_height="32dp" />
+            android:contentDescription="@string/icon"
+            android:src="@color/white" />
 
     </RelativeLayout>
 
@@ -114,46 +116,12 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:fontFamily="@font/ave_heavy"
-            android:text="No Events Registered"
-            android:textColor="@android:color/holo_red_dark"
+            android:text="@string/no_events_registered"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="15sp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@id/user_events_title"
             app:layout_constraintTop_toBottomOf="@+id/registered_events_list" />
 
-        <RelativeLayout
-            android:id="@+id/accommodation_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="15dp"
-            android:background="@drawable/accommodation_layout_bg"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/no_events_registered">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="15dp"
-                android:layout_toEndOf="@id/user_accommodation_title"
-                android:contentDescription="@string/icon_bed"
-                android:src="@drawable/ic_bed" />
-
-            <TextView
-                android:id="@+id/user_accommodation_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/circular_bold"
-                android:gravity="start"
-                android:padding="13dp"
-                android:text="@string/accommodation_details"
-                android:textColor="@android:color/white"
-                android:textSize="17sp" />
-        </RelativeLayout>
 
         <TextView
             android:id="@+id/user_logout"

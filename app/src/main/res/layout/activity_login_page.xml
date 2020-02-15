@@ -4,37 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/background_dark"
+    android:background="@color/colorPrimaryDark"
     android:orientation="vertical"
     tools:context=".login_page.LoginPage">
-
-    <!--    <de.hdodenhof.circleimageview.CircleImageView-->
-    <!--        android:id="@+id/boarding_profile_img"-->
-    <!--        android:layout_width="65dp"-->
-    <!--        android:layout_height="65dp"-->
-    <!--        android:layout_marginTop="50dp"-->
-    <!--        android:layout_marginEnd="25dp"-->
-    <!--        android:scaleType="fitCenter"-->
-    <!--        android:src="@drawable/splash_logo"-->
-    <!--        app:civ_border_color="#000000"-->
-    <!--        app:civ_border_width="1dp"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--    <RelativeLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        android:layout_centerVertical="true"-->
-<!--        android:layout_height="match_parent">-->
-
-<!--        <VideoView-->
-<!--            android:id="@+id/mVideoView"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:layout_centerInParent="true"-->
-<!--            android:layout_centerVertical="true" />-->
-
-<!--    </RelativeLayout>-->
 
     <AutoCompleteTextView
         android:id="@+id/boarding_college_field"
@@ -43,37 +15,56 @@
         android:layout_marginStart="25dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="25dp"
-        android:background="@color/colorAccent"
-        android:fontFamily="@font/circular_bold"
-        android:hint="Enter College Name"
+        android:background="@drawable/sign_in_bg"
+        android:backgroundTint="@color/colorPrimary"
+        android:fontFamily="@font/ave_heavy"
+        android:hint="@string/enter_college_name"
         android:inputType="text"
-        android:textColorHint="#fff"
         android:padding="8dp"
+        android:textColorHint="#fff"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/boarding_number_field" />
 
-    <Button
+
+    <RelativeLayout
         android:id="@+id/boarding_submit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_marginStart="25dp"
         android:layout_marginEnd="25dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/button_circle"
-        android:backgroundTint="#fff"
-        android:drawableEnd="@drawable/ic_arrow_forward"
-        android:fontFamily="@font/circular_bold"
-        android:gravity="center_vertical"
-        android:paddingLeft="20dp"
-        android:paddingEnd="10dp"
-        android:text="Lets Go"
+        android:backgroundTint="@color/white"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingStart="15dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="15dp"
+        android:paddingBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_goneMarginBottom="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/circular_bold"
+            android:text="@string/let_s_go"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/circle_go"
+            android:contentDescription="@string/icon"
+            android:src="@drawable/ic_arrow_forward" />
+    </RelativeLayout>
 
     <EditText
         android:id="@+id/boarding_number_field"
@@ -82,9 +73,10 @@
         android:layout_marginStart="25dp"
         android:layout_marginTop="44dp"
         android:layout_marginEnd="25dp"
-        android:background="@color/colorAccent"
+        android:background="@drawable/sign_in_bg"
+        android:backgroundTint="@color/colorPrimary"
         android:fontFamily="@font/circular_bold"
-        android:hint="Enter Phone No."
+        android:hint="@string/enter_phone_no"
         android:importantForAutofill="no"
         android:inputType="phone"
         android:maxLength="10"

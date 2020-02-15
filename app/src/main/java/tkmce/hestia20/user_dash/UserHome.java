@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -48,7 +49,7 @@ import tkmce.hestia20.model.EventBasicModel;
 
 import static android.view.View.VISIBLE;
 
-public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRowClickedListener {
+public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRowClickedListener, BottomSheetLogoutFragment.logoutListener {
 
     private static final String TAG = UserHome.class.getSimpleName();
 
@@ -63,7 +64,8 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
     private GoogleSignInAccount account;
 
     private AlertDialog dialog;
-
+    private File qr_file;
+    private BottomSheetLogoutFragment logoutSheetFragment;
 //    private ShimmerFrameLayout shimmer1;
 
     @Override
@@ -93,7 +95,7 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
         eventsList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         eventsList.setAdapter(adapter);
 
-        fetchEvents(0);
+        fetchEvents();
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         dialog = builder.create();
@@ -135,11 +137,11 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
     }
 
     public void showLogoutDialog() {
-        BottomSheetLogoutFragment bottomSheetFragment = BottomSheetLogoutFragment.newInstance(this);
-        bottomSheetFragment.show(getSupportFragmentManager(), bottomSheetFragment.getTag());
+        logoutSheetFragment = BottomSheetLogoutFragment.newInstance(this);
+        logoutSheetFragment.show(getSupportFragmentManager(), logoutSheetFragment.getTag());
     }
 
-    File qr_file;
+
 
     private void getBarcodeAccount() {
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -217,7 +219,7 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
         }
     }
 
-    private void fetchEvents(final int i) {
+    private void fetchEvents() {
         if (dialogLoad != null) dialogLoad.dismiss();
         dialogLoad = new ProgressDialog(this);
         dialogLoad.show();
@@ -256,7 +258,7 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
         queue.add(stringRequest);
     }
 
-    private void parseResponse(String response, int k) {
+    private void parseResponse(String response) {
         try {
             JSONArray registrations = new JSONArray(response);
             for (int i = 0; i < registrations.length(); i++) {
@@ -276,14 +278,17 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
 
             if (regEvents.size() == 0) {
                 noEvents.setVisibility(VISIBLE);
+            } else {
+                onRowClicked(k);
             }
-
-//            else {
-//                onRowClicked(k);
-//            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onRowClicked(int i) {
+        Toast.makeText(this, "Clicked on event: " + regEvents.get(i).getTitle(), Toast.LENGTH_SHORT).show();
     }
 
     private void errorOccurred(final String msg) {
@@ -296,7 +301,7 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
                         .setAction("Retry", new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                fetchEvents(0);
+                                fetchEvents();
                                 if (imgQR.getVisibility() != VISIBLE) getBarcodeAccount();
                             }
                         });
@@ -305,35 +310,33 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
         });
     }
 
-    private void logoutUser() {
+    //TODO: add logout feature (CLEAR PREFERENCES)
+    @Override
+    public void onLogout() {
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+        GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(getApplicationContext(), gso);
 
+        googleSignInClient.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    SharedPreferences preferences = getSharedPreferences("login_prefs", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.clear();
+                    editor.apply();
+                    startActivity(new Intent(getApplicationContext(), SplashActivity.class));
+                    finish();
+                } else {
+                    Toast.makeText(UserHome.this, "Cannot Logout at the moment", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     @Override
-    public void onRowClicked(String event_id) {
-//        Intent intent = new Intent(this, EventDetailed.class);
-//        Bundle bundle = new Bundle();
-//        bundle.putSerializable(EventDetailed.EVENT, event);
-//        intent.putExtras(bundle);
-//        startActivity(intent);
+    public void dismissSheet() {
+        logoutSheetFragment.dismiss();
     }
-
-
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        shimmer_top_events.startShimmerAnimation();
-//    }
-//
-//    @Override
-//    protected void onPause() {
-//        shimmer_top_events.stopShimmerAnimation();
-//        super.onPause();
-//    }
-
-
-//    @Override
-//    public void onUpdated(int i) {
-//        fetchEvents(i);
-//    }
 }

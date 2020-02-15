@@ -1,6 +1,7 @@
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    xmlns:shimmer="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/background_dark"
     android:padding="10dp">
 
@@ -9,15 +10,33 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-
-        <TextView
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/ave_heavy"
-            android:padding="10dp"
-            android:text="Hestia Schedule"
-            android:textColor="@android:color/white"
-            android:textSize="25sp" />
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/user_back"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginEnd="8dp"
+                android:background="@android:color/transparent"
+                android:scaleX="1.3"
+                android:scaleY="1.3"
+                android:src="@drawable/ic_chevron_left_white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ave_heavy"
+                android:padding="8dp"
+                android:layout_centerHorizontal="true"
+                android:text="Hestia Schedule"
+                android:textColor="@android:color/white"
+                android:textSize="25sp" />
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -36,8 +55,8 @@
                 android:checked="true"
                 android:fontFamily="@font/ave_med"
                 android:padding="7dp"
-                android:tag="03-28"
-                android:text="Day 1"
+                android:tag="02-27"
+                android:text="27/02"
                 android:textColor="@android:color/white" />
 
             <CheckedTextView
@@ -49,8 +68,8 @@
                 android:background="@drawable/day_btn_bg"
                 android:fontFamily="@font/ave_med"
                 android:padding="7dp"
-                android:tag="03-29"
-                android:text="Day 2"
+                android:tag="02-28"
+                android:text="28/02"
                 android:textColor="@android:color/white" />
 
             <CheckedTextView
@@ -62,8 +81,8 @@
                 android:background="@drawable/day_btn_bg"
                 android:fontFamily="@font/ave_med"
                 android:padding="7dp"
-                android:tag="03-30"
-                android:text="Day 3"
+                android:tag="02-29"
+                android:text="29/02"
                 android:textColor="@android:color/white" />
 
             <CheckedTextView
@@ -75,43 +94,45 @@
                 android:background="@drawable/day_btn_bg"
                 android:fontFamily="@font/ave_med"
                 android:padding="7dp"
-                android:tag="03-31"
-                android:text="Day 4"
+                android:tag="03-01"
+                android:text="01/03"
                 android:textColor="@android:color/white" />
 
         </LinearLayout>
 
-        <!--        <androidx.recyclerview.widget.RecyclerView-->
-        <!--            android:id="@+id/schedule_list_recycler"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginTop="10dp" />-->
-
-        <LinearLayout
-            android:layout_marginTop="10dp"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/schedule_list_recycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginTop="10dp" />
 
-            <include layout="@layout/event_schedule_row" />
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_schedule"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            shimmer:duration="800">
 
-            <include layout="@layout/event_schedule_row" />
+            <!-- Adding 7 rows of placeholders -->
 
-            <include layout="@layout/event_schedule_row" />
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-            <include layout="@layout/event_schedule_row" />
+                <include layout="@layout/event_schedule_placeholder_row" />
 
-            <include layout="@layout/event_schedule_row" />
+                <include layout="@layout/event_schedule_placeholder_row" />
 
-            <include layout="@layout/event_schedule_row" />
+                <include layout="@layout/event_schedule_placeholder_row" />
 
-            <include layout="@layout/event_schedule_row" />
+                <include layout="@layout/event_schedule_placeholder_row" />
 
-            <include layout="@layout/event_schedule_row" />
+            </LinearLayout>
 
-            <include layout="@layout/event_schedule_row" />
-
-        </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
 
     </LinearLayout>

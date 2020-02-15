@@ -15,8 +15,18 @@ public class EventBasicModel implements Serializable {
     private String file1;
     private String file2;
 
+    private String reg_fee;
+
     private String f1_hint;
     private String f2_hint;
+
+    public String getReg_fee() {
+        return reg_fee;
+    }
+
+    public void setReg_fee(String reg_fee) {
+        this.reg_fee = reg_fee;
+    }
 
     public String getF1_hint() {
         return f1_hint;

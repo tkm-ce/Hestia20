@@ -1,6 +1,7 @@
 package tkmce.hestia20.Adapter;
 
 import android.app.Activity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
@@ -19,13 +19,13 @@ import java.util.List;
 import tkmce.hestia20.R;
 import tkmce.hestia20.model.EventBasicModel;
 
-public class TopEventAdapter extends RecyclerView.Adapter<TopEventAdapter.ViewHolder> {
+public class CategoryEventAdapter extends RecyclerView.Adapter<CategoryEventAdapter.ViewHolder> {
     private View view;
     private List<EventBasicModel> events;
     private Activity context;
     private OnRowClickedListener listener;
 
-    public TopEventAdapter(List<EventBasicModel> events, Activity context, OnRowClickedListener listener) {
+    public CategoryEventAdapter(List<EventBasicModel> events, Activity context, OnRowClickedListener listener) {
         this.events = events;
         this.context = context;
         this.listener = listener;
@@ -33,24 +33,29 @@ public class TopEventAdapter extends RecyclerView.Adapter<TopEventAdapter.ViewHo
 
     @NonNull
     @Override
-    public TopEventAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_list_row, parent, false);
+    public CategoryEventAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.event_list_row, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final TopEventAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final CategoryEventAdapter.ViewHolder holder, final int position) {
         holder.title.setText(events.get(position).getTitle());
-        holder.date.setText(events.get(position).getFile1());
+        holder.date.setText("Reg Fees: " + events.get(position).getReg_fee());
+        holder.event_prize_amt.setText("Prizes: " + events.get(position).getPrize());
+
+        if (TextUtils.isEmpty(events.get(position).getPrize())) {
+            holder.event_prize_amt.setVisibility(View.GONE);
+        }
 
         Log.d("yoo", "onBindViewHolder: " + "https://www.hestia.live/assets/uploads/event_images/" + events.get(position).getImg());
 
         Picasso.with(context)
                 .load("https://www.hestia.live/assets/uploads/event_images/" + events.get(position).getImg())
-                .resize(300,300)
+                .resize(700, 700)
                 .centerCrop()
                 .placeholder(R.drawable.landing_placeholder)
-                .into(holder.img);
+                .into(holder.ordered_product_image);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,18 +72,17 @@ public class TopEventAdapter extends RecyclerView.Adapter<TopEventAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private CardView cardView;
-        private ImageView img;
+        private ImageView ordered_product_image;
         private TextView title;
-        private TextView date;
+        private TextView date, event_prize_amt;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            cardView = itemView.findViewById(R.id.user_event_row_card);
-            img = itemView.findViewById(R.id.user_event_row_img);
-            title = itemView.findViewById(R.id.user_event_row_title);
-            date = itemView.findViewById(R.id.user_event_row_date);
+            ordered_product_image = itemView.findViewById(R.id.ordered_product_image);
+            title = itemView.findViewById(R.id.event_name);
+            date = itemView.findViewById(R.id.event_date);
+            event_prize_amt = itemView.findViewById(R.id.event_prize_amt);
         }
 
     }

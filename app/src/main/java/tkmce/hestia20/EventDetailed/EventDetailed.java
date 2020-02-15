@@ -17,20 +17,25 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
-import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.snackbar.Snackbar;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,12 +49,6 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.regex.Pattern;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import tkmce.hestia20.R;
 import tkmce.hestia20.model.EventModel;
 import tkmce.hestia20.model.ResultModel;
@@ -138,16 +137,17 @@ public class EventDetailed extends AppCompatActivity implements View.OnClickList
 
         if (bundle != null) {
             eventModel = (EventModel) bundle.getSerializable(EVENT);
-            StringBuilder stringBuilder = new StringBuilder("https://www.hestia.live/assets/uploads/event_images/");
 
-            Glide.with(this)
-                    .load(stringBuilder.append(eventModel.getEvent_id()).append(".jpg").toString())
-                    .apply(new RequestOptions().override(700, 400))
-                    .transition(DrawableTransitionOptions.withCrossFade(1300))
-                    .apply(new RequestOptions().centerCrop().placeholder(R.drawable.landing_placeholder))
+            Picasso.with(this)
+                    .load("https://www.hestia.live/assets/uploads/event_images/" + eventModel.getImg())
+                    .resize(700,400)
+                    .centerCrop()
+                    .placeholder(R.drawable.landing_placeholder)
                     .into((ImageView) findViewById(R.id.detailsImage));
         }
 
+        Log.d(TAG, "onCreate: ");
+        
         Toolbar toolbar = findViewById(R.id.detailsToolbar);
         setSupportActionBar(toolbar);
 

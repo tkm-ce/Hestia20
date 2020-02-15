@@ -1,5 +1,7 @@
 package tkmce.hestia20.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -25,6 +27,7 @@ public class EventModel implements Serializable {
     private int seats;
     private Date reg_start;
     private Date reg_end;
+    @SerializedName("image_name")
     private String img;
 
     public EventModel() {

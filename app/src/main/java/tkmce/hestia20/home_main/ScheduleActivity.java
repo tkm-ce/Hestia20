@@ -3,7 +3,6 @@ package tkmce.hestia20.home_main;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckedTextView;
@@ -78,12 +77,7 @@ public class ScheduleActivity extends AppCompatActivity implements View.OnClickL
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                getScheduleList();
-            }
-        }, 3000);
+        getScheduleList();
 
         findViewById(R.id.user_back).setOnClickListener(new View.OnClickListener() {
             @Override

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/event_row_card"
+    android:background="?selectableItemBackground"
     app:cardBackgroundColor="#fff"
     app:cardCornerRadius="5dp"
     app:cardElevation="1dp">
@@ -59,7 +60,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/event_name"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:layout_toEndOf="@id/ordered_product_image"
             android:fontFamily="@font/ave_med"
@@ -77,7 +77,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/event_name"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:layout_toStartOf="@id/event_right_click"
             android:layout_toEndOf="@id/event_date"

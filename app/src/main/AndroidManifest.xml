@@ -30,7 +30,7 @@
         <activity android:name=".home_main.ActivityRegister" />
         <activity android:name=".home_main.PaymentActivity" />
         <activity android:name=".home_main.PaymentFinishActivity" />
-        <activity android:name=".home_main.EventDetails" />
+        <activity android:name=".EventDetailed.EventDetailed" />
     </application>
 
 </manifest>

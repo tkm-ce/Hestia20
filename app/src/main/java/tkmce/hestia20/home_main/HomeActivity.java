@@ -2,7 +2,6 @@ package tkmce.hestia20.home_main;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
@@ -32,13 +31,18 @@ import com.squareup.picasso.Picasso;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 import tkmce.hestia20.Adapter.CategoryEventAdapter;
 import tkmce.hestia20.Adapter.EventListAdapter;
 import tkmce.hestia20.Adapter.TopEventAdapter;
+import tkmce.hestia20.EventDetailed.EventDetailed;
 import tkmce.hestia20.R;
 import tkmce.hestia20.model.EventBasicModel;
+import tkmce.hestia20.model.EventModel;
 import tkmce.hestia20.user_dash.UserHome;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener, TopEventAdapter.OnRowClickedListener,
@@ -117,16 +121,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-//        prepareData();
-
-        //Setting topEventList
-//        RecyclerView topEventsList = findViewById(R.id.events_featured_recycler);
-//        TopEventAdapter topEventAdapter = new TopEventAdapter(topEvents, this);
-//        RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), RecyclerView.HORIZONTAL, false);
-//        topEventsList.setLayoutManager(linearLayoutManager);
-//        topEventsList.setAdapter(topEventAdapter);
-
-
         //Setting allEventList
         allEventList = findViewById(R.id.home_event_list);
         EventListAdapter eventListAdapter = new EventListAdapter(allEvents, this);
@@ -165,12 +159,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
         shimmer_top_events = findViewById(R.id.shimmer_top_events);
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                getTopEvents();
-            }
-        }, 2500);
+        getTopEvents();
     }
 
     private void getTopEvents() {
@@ -223,9 +212,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void parseCategoricalEvents(List<EventBasicModel> top_events) {
-        shimmer_top_events.stopShimmerAnimation();
-        shimmer_top_events.setVisibility(View.GONE);
-
         CategoryEventAdapter topEventAdapter = new CategoryEventAdapter(top_events, this, this);
         RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), RecyclerView.VERTICAL, false);
         allEventList.setLayoutManager(linearLayoutManager);
@@ -245,38 +231,44 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         if (v == section1) {
             toggleColor(section2, section3, section4, section5);
             section1.setBackgroundResource(R.drawable.circle_go);
-            getCategoryData(1);
+//            getCategoryData(5);
+            getCategoryData("technical");
         } else if (v == section2) {
             toggleColor(section1, section3, section4, section5);
             section2.setBackgroundResource(R.drawable.circle_go);
-            getCategoryData(2);
+//            getCategoryData(2);
+            getCategoryData("online");
         } else if (v == section3) {
             toggleColor(section2, section1, section4, section5);
             section3.setBackgroundResource(R.drawable.circle_go);
-            getCategoryData(3);
+//            getCategoryData(3);
+            getCategoryData("general");
         } else if (v == section4) {
             toggleColor(section2, section3, section1, section5);
             section4.setBackgroundResource(R.drawable.circle_go);
-            getCategoryData(4);
+//            getCategoryData(4);
+            getCategoryData("cultural");
         } else if (v == section5) {
             toggleColor(section2, section3, section4, section1);
             section5.setBackgroundResource(R.drawable.circle_go);
-            getCategoryData(5);
+//            getCategoryData(1);
+            getCategoryData("workshop");
         }
     }
 
-    private void getCategoryData(int i) {
+    private void getCategoryData(final String i) {
         anim_toggle(1);
-        String url = "https://www.hestia.live/Admin_API/categoryevents/" + i;
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        StringRequest request = new StringRequest(Request.Method.GET, url,
 
+        String url = "https://www.hestia.live/App_api/GetEventsByCatLike";
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        StringRequest request = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
+                        Gson gson = new Gson().newBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
                         Type listType = new TypeToken<List<EventBasicModel>>() {
-                        }.getType();
-                        List<EventBasicModel> top_events = new Gson().fromJson(s, listType);
+                                                    }.getType();
+                        List<EventBasicModel> top_events = gson.fromJson(s, listType);
                         parseCategoricalEvents(top_events);
                     }
                 }, new Response.ErrorListener() {
@@ -285,9 +277,41 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 Log.e(TAG, "onErrorResponse: ", volleyError.getCause());
                 Toast.makeText(HomeActivity.this, getString(R.string.error_toast), Toast.LENGTH_SHORT).show();
             }
-        });
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("catname", Objects.requireNonNull(i));
+                return params;
+            }
+
+        };
         requestQueue.add(request);
     }
+
+//    private void getCategoryData(int i) {
+//        anim_toggle(1);
+//        String url = "https://www.hestia.live/Admin_API/categoryevents/" + i;
+//        RequestQueue requestQueue = Volley.newRequestQueue(this);
+//        StringRequest request = new StringRequest(Request.Method.GET, url,
+//
+//                new Response.Listener<String>() {
+//                    @Override
+//                    public void onResponse(String s) {
+//                        Type listType = new TypeToken<List<EventBasicModel>>() {
+//                        }.getType();
+//                        List<EventBasicModel> top_events = new Gson().fromJson(s, listType);
+//                        parseCategoricalEvents(top_events);
+//                    }
+//                }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError volleyError) {
+//                Log.e(TAG, "onErrorResponse: ", volleyError.getCause());
+//                Toast.makeText(HomeActivity.this, getString(R.string.error_toast), Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//        requestQueue.add(request);
+//    }
 
 
     @Override
@@ -304,40 +328,30 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onRowClicked(String event_id) {
-//        String url = "https:// string_url/" + i;
-//        RequestQueue requestQueue = Volley.newRequestQueue(this);
-//        StringRequest request = new StringRequest(Request.Method.POST, url,
-//
-//                new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String s) {
-//                        try {
-//                            JSONObject jsonObject = new JSONObject(s);
-//                            JSONArray initArray = new JSONArray(jsonObject);
-//                            for (int i = 0; i < initArray.length(); i++) {
-//                                JSONObject item = initArray.getJSONObject(i);
-//
-//                            }
-//
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError volleyError) {
-//                Log.e(TAG, "onErrorResponse: ", volleyError.getCause());
-//                Toast.makeText(HomeActivity.this, getString(R.string.error_toast), Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//        requestQueue.add(request);
-//
-//
-//        Intent intent = new Intent(this, EventDetails.class);
-//        Bundle bundle = new Bundle();
-//        bundle.putSerializable(EventDetails.EVENT, event);
-//        intent.putExtras(bundle);
-//        startActivity(intent);
+        String url = "https://www.hestia.live/Mapp_api/event_by_id/" + event_id;
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        StringRequest request = new StringRequest(Request.Method.GET, url,
+
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        Gson gson = new Gson().newBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+                        EventModel eventDetails = gson.fromJson(s, EventModel.class);
+
+                        Intent intent = new Intent(getApplicationContext(), EventDetailed.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable(EventDetailed.EVENT, eventDetails);
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Log.e(TAG, "onErrorResponse: ", volleyError.getCause());
+                Toast.makeText(HomeActivity.this, getString(R.string.error_toast), Toast.LENGTH_SHORT).show();
+            }
+        });
+        requestQueue.add(request);
     }
 
 }

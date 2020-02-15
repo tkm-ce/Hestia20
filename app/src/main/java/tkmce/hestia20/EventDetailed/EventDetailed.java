@@ -137,16 +137,17 @@ public class EventDetailed extends AppCompatActivity implements View.OnClickList
 
         if (bundle != null) {
             eventModel = (EventModel) bundle.getSerializable(EVENT);
-            StringBuilder stringBuilder = new StringBuilder("https://www.hestia.live/assets/uploads/event_images/");
 
             Picasso.with(this)
-                    .load(stringBuilder.append(eventModel.getEvent_id()).append(".jpg").toString())
+                    .load("https://www.hestia.live/assets/uploads/event_images/" + eventModel.getImg())
                     .resize(700,400)
                     .centerCrop()
                     .placeholder(R.drawable.landing_placeholder)
                     .into((ImageView) findViewById(R.id.detailsImage));
         }
 
+        Log.d(TAG, "onCreate: ");
+        
         Toolbar toolbar = findViewById(R.id.detailsToolbar);
         setSupportActionBar(toolbar);
 

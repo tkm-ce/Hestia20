@@ -311,9 +311,9 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
 
     @Override
     public void onRowClicked(String event_id) {
-//        Intent intent = new Intent(this, EventDetails.class);
+//        Intent intent = new Intent(this, EventDetailed.class);
 //        Bundle bundle = new Bundle();
-//        bundle.putSerializable(EventDetails.EVENT, event);
+//        bundle.putSerializable(EventDetailed.EVENT, event);
 //        intent.putExtras(bundle);
 //        startActivity(intent);
     }

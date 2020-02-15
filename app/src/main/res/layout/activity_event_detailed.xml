@@ -278,7 +278,7 @@
                 android:contentDescription="@string/event_image"
                 android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
-                android:src="@mipmap/ic_launcher"
+                android:src="@drawable/landing_placeholder"
                 android:tint="@color/black_transparent"
                 android:transitionName="imageTransition"
                 app:layout_collapseMode="parallax"
@@ -290,6 +290,11 @@
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin" />
         </com.google.android.material.appbar.CollapsingToolbarLayout>
-
     </com.google.android.material.appbar.AppBarLayout>
+
+    <include layout="@layout/bottom_sheet_register" />
+    <include layout="@layout/bottomsheet_results" />
+    <include layout="@layout/bottomsheet_coordinators" />
+    <include layout="@layout/bottom_sheet_register" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

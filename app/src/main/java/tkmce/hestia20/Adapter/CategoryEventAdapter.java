@@ -1,6 +1,7 @@
 package tkmce.hestia20.Adapter;
 
 import android.app.Activity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,14 +41,18 @@ public class CategoryEventAdapter extends RecyclerView.Adapter<CategoryEventAdap
     @Override
     public void onBindViewHolder(@NonNull final CategoryEventAdapter.ViewHolder holder, final int position) {
         holder.title.setText(events.get(position).getTitle());
-        holder.date.setText(events.get(position).getFile2());
-        holder.event_prize_amt.setText(events.get(position).getPrize());
+        holder.date.setText("Reg Fees: " + events.get(position).getReg_fee());
+        holder.event_prize_amt.setText("Prizes: " + events.get(position).getPrize());
+
+        if (TextUtils.isEmpty(events.get(position).getPrize())) {
+            holder.event_prize_amt.setVisibility(View.GONE);
+        }
 
         Log.d("yoo", "onBindViewHolder: " + "https://www.hestia.live/assets/uploads/event_images/" + events.get(position).getImg());
 
         Picasso.with(context)
                 .load("https://www.hestia.live/assets/uploads/event_images/" + events.get(position).getImg())
-                .resize(300,300)
+                .resize(700, 700)
                 .centerCrop()
                 .placeholder(R.drawable.landing_placeholder)
                 .into(holder.ordered_product_image);

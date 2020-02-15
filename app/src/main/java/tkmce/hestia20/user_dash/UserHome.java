@@ -1,6 +1,9 @@
 package tkmce.hestia20.user_dash;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -10,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +28,10 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
@@ -45,6 +53,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import tkmce.hestia20.Adapter.TopEventAdapter;
 import tkmce.hestia20.Constants;
 import tkmce.hestia20.R;
+import tkmce.hestia20.login_page.SplashActivity;
 import tkmce.hestia20.model.EventBasicModel;
 
 import static android.view.View.VISIBLE;
@@ -236,7 +245,7 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
 //                        shimmer1.setVisibility(View.GONE);
 
                         regEvents.clear();
-                        parseResponse(response, i);
+                        parseResponse(response);
                     }
                 },
                 new Response.ErrorListener() {
@@ -278,17 +287,10 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
 
             if (regEvents.size() == 0) {
                 noEvents.setVisibility(VISIBLE);
-            } else {
-                onRowClicked(k);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public void onRowClicked(int i) {
-        Toast.makeText(this, "Clicked on event: " + regEvents.get(i).getTitle(), Toast.LENGTH_SHORT).show();
     }
 
     private void errorOccurred(final String msg) {
@@ -338,5 +340,10 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
     @Override
     public void dismissSheet() {
         logoutSheetFragment.dismiss();
+    }
+
+    @Override
+    public void onRowClicked(String event_id) {
+
     }
 }

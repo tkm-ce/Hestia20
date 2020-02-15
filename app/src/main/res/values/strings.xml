@@ -40,22 +40,50 @@
     <string name="about_hestia">Hestia is a National level Techno Cultural fest organized by TKM College of Engineering in Feb 27- March 1 2020.\n\nThe architecture department of the college has planned to formulate a series of creative workshops as the part of HESTIA\'20 on 27, 28, 29 and 30th  of March 2020. \n\nThe workshops provide freedom for connecting the key people to establish fresh thinking about an idea.</string>
     <string name="error_toast">Can\'t retrieve data at the moment</string>
     <string name="workshop">Workshop</string>
-    <string name="schedule">Schedule</string>
-    <string name="data_1">28th April 10:00–11:00 (Round 1) 29 April 10:00–01:00 (Round 2) 29th April 03:00–05:00 (Final Round)</string>
-    <string name="registration_fee">Registration Fee</string>
-    <string name="contact_details">Contact Details</string>
-    <string name="free">Free</string>
+
     <string name="prizes_worth">Prizes worth</string>
-    <string name="addParticipant">Add Participant 1 / %d</string>
+    <string name="desc_event_image">Event Image</string>
+    <string name="registration_fee">Registration Fee</string>
+    <string name="schedule">Schedule</string>
+    <string name="desc_btnExpand">Expand or Collapse Description</string>
+    <string name="contact_details">CONTACT DETAILS</string>
+
     <string name="buy_ticket">Buy Ticket</string>
     <string name="booked">Booked</string>
-    <string name="sold_out">Sold out</string>
-    <string name="reg_closed">Closed</string>
+    <string name="sold_out">Sold Out</string>
     <string name="starts_on">Starts on</string>
+    <string name="reg_closed">Closed</string>
+    <string name="reg_starts_soon">Starts soon</string>
+
+    <string name="addParticipant">Add participant 1/%d</string>
+    <string name="add_participant_1_3">Add Participant</string>
+    <string name="enter_mail_id">Enter Mail</string>
+    <string name="day_1">FEB 27</string>
+    <string name="day_2">FEB 28</string>
+    <string name="day_3">FEB 29</string>
+    <string name="day_4">MAR 01</string>
+    <string name="referral_code">Referral Code</string>
+    <string name="enter_referral_code_here">Enter Referral Code here</string>
+    <string name="accommodation_required">Accommodation Required</string>
+    <string name="coordinators_for_the_event">Coordinators for the event</string>
+    <string name="call">CALL</string>
+    <string name="desc_hestia_logo">Hestia logo</string>
+
+    <string name="text1">As a part of HESTIA\'19, the tech summit jointly conducted by IEEE SB TKMCE and IEDC TKMCE presents AAVEGAME -Where your answers wont get you fired with an intention to attain knowledge by adding things everydayand also to attain wisdom by removing things everyday.\n\nRules:\nIf you are someone passionate about exploring the latest advancements in the field of engineering, and have an innate desire to scale up the scope of engineering , then join us, as we present to you a golden opportunity to explore and learn.</string>
+    <string name="back_press">Tap back again to exit</string>
+    <string name="data_1">28th April 10:00–11:00 (Round 1) 29 April 10:00–01:00 (Round 2) 29th April 03:00–05:00 (Final Round)</string>
+
+    <string name="payment_success">Payment Success</string>
+    <string name="payment_failed">Payment Failed</string>
+    <string name="free">Free</string>
+
     <string name="retry">RETRY</string>
     <string name="sign_in_with_google">Sign in with Google</string>
     <string name="let_s_go">Let\'s Go</string>
     <string name="enter_college_name">Enter College Name</string>
     <string name="enter_phone_no">Enter Phone No.</string>
     <string name="no_events_registered">No Events Registered</string>
+    <string name="event_registration">Event Registration</string>
+    <string name="participant_list">Participation List</string>
+    <string name="select_accommodation_day">Select Accommodation Day</string>
 </resources>

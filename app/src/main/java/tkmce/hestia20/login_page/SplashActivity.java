@@ -89,7 +89,6 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
 
         init();
         checkLoggedIn();
-        attemptLogin();
         btnLogin.setOnClickListener(this);
     }
 

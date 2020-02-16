@@ -46,16 +46,16 @@
             android:name=".home_main.ScheduleActivity" />
         <activity
             android:launchMode="singleTop"
-            android:name=".eventDetailed.ActivityRegister" />
+            android:name=".EventDetailed.ActivityRegister" />
         <activity
             android:launchMode="singleTop"
-            android:name=".eventDetailed.PaymentActivity" />
+            android:name=".EventDetailed.PaymentActivity" />
         <activity
             android:launchMode="singleTop"
-            android:name=".eventDetailed.PaymentFinishActivity" />
+            android:name=".EventDetailed.PaymentFinishActivity" />
         <activity
             android:launchMode="singleTop"
-            android:name=".eventDetailed.EventDetailed" />
+            android:name=".EventDetailed.EventDetailed" />
     </application>
 
 </manifest>

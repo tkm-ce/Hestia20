@@ -39,7 +39,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import tkmce.hestia20.Adapter.CategoryEventAdapter;
 import tkmce.hestia20.Adapter.EventListAdapter;
 import tkmce.hestia20.Adapter.TopEventAdapter;
-import tkmce.hestia20.eventDetailed.EventDetailed;
+import tkmce.hestia20.EventDetailed.EventDetailed;
 import tkmce.hestia20.R;
 import tkmce.hestia20.model.EventBasicModel;
 import tkmce.hestia20.model.EventModel;

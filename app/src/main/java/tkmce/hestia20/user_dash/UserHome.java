@@ -13,13 +13,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -49,6 +42,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import de.hdodenhof.circleimageview.CircleImageView;
 import tkmce.hestia20.Adapter.TopEventAdapter;
 import tkmce.hestia20.Constants;
@@ -118,13 +117,6 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
             }
         });
 
-        findViewById(R.id.accommodation_layout).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showAccomodationDialog();
-            }
-        });
-
         findViewById(R.id.user_logout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -140,10 +132,6 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
         });
     }
 
-    public void showAccomodationDialog() {
-        BottomSheetAccommodationFragment bottomSheetFragment = new BottomSheetAccommodationFragment(this);
-        bottomSheetFragment.show(getSupportFragmentManager(), bottomSheetFragment.getTag());
-    }
 
     public void showLogoutDialog() {
         logoutSheetFragment = BottomSheetLogoutFragment.newInstance(this);

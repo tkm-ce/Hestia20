@@ -9,9 +9,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.airbnb.lottie.LottieAnimationView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -33,6 +30,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import tkmce.hestia20.Constants;
 import tkmce.hestia20.R;
 import tkmce.hestia20.home_main.HomeActivity;
@@ -90,8 +89,8 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
 
 
         init();
-
         checkLoggedIn();
+        attemptLogin();
         btnLogin.setOnClickListener(this);
     }
 
@@ -135,6 +134,7 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.sign_in_launcher: {
                 progress.setVisibility(View.VISIBLE);
                 v.setEnabled(false);
+                attemptLogin();
                 startActivityForResult(mGoogleSignInClient.getSignInIntent(), GOOGLE_SIGN_IN);
                 break;
             }

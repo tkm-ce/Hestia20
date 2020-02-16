@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:orientation="vertical"
+<LinearLayout xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/btm_register"
-    android:background="@android:color/white"
+    android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     app:layout_behavior="@string/bottom_sheet_behavior"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:behavior_peekHeight="0dp"
     app:behavior_hideable="true"
-    android:layout_height="wrap_content">
+    android:background="@drawable/user_sheet_bg"
+    android:orientation="vertical">
 
     <TextView
-        android:text="Add upto 3 Participants"
+        android:fontFamily="@font/ave_heavy"
         android:textSize="17sp"
+        tools:text="Add upto 3 Participants"
         android:padding="10dp"
         android:textColor="@android:color/black"
         android:id="@+id/btm_title"
@@ -47,8 +48,9 @@
             android:layout_marginStart="7dp"
             android:layout_marginEnd="7dp"
             android:background="@drawable/add_bg"
+            android:backgroundTint="@color/colorPrimary"
             android:textColor="@android:color/white"
-            android:text="add_participant"
+            android:text="@string/add_participant"
             android:layout_marginBottom="15dp"
             android:textSize="17sp"
             android:layout_marginTop="10dp"

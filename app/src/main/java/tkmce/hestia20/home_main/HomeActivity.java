@@ -8,12 +8,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.airbnb.lottie.LottieAnimationView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -36,6 +30,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import tkmce.hestia20.Adapter.CategoryEventAdapter;
 import tkmce.hestia20.Adapter.EventListAdapter;
 import tkmce.hestia20.Adapter.TopEventAdapter;
@@ -258,7 +257,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     private void getCategoryData(final String i) {
         anim_toggle(1);
-
         String url = "https://www.hestia.live/App_api/GetEventsByCatLike";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest request = new StringRequest(Request.Method.POST, url,
@@ -268,8 +266,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                         Gson gson = new Gson().newBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
                         Type listType = new TypeToken<List<EventBasicModel>>() {
                                                     }.getType();
-                        List<EventBasicModel> top_events = gson.fromJson(s, listType);
-                        parseCategoricalEvents(top_events);
+                        List<EventBasicModel> category_events = gson.fromJson(s, listType);
+                        parseCategoricalEvents(category_events);
                     }
                 }, new Response.ErrorListener() {
             @Override

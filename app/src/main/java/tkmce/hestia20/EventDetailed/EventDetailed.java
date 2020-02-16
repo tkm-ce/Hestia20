@@ -17,13 +17,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -49,6 +42,13 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.regex.Pattern;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import tkmce.hestia20.Adapter.ResultsAdapter;
 import tkmce.hestia20.R;
 import tkmce.hestia20.model.EventModel;
 import tkmce.hestia20.model.ResultModel;
@@ -89,6 +89,7 @@ public class EventDetailed extends AppCompatActivity implements View.OnClickList
     private View scheduleProgress, statusProgress;
     private Snackbar networkSnack;
     private int members;
+    public int results_length = 0;
 
     private void init() {
         btmParticipantText = findViewById(R.id.btm_title);
@@ -157,7 +158,6 @@ public class EventDetailed extends AppCompatActivity implements View.OnClickList
         }
 
         init();
-        clearSheet();
 
         ExpandableTextView expTv1 = findViewById(R.id.expand_text_view);
         expTv1.setText(getString(R.string.icon));
@@ -459,7 +459,7 @@ public class EventDetailed extends AppCompatActivity implements View.OnClickList
             }
             case "closed": {
                 btnRegister.setText(R.string.reg_closed);
-                btnRegister.setBackground(getDrawable(R.color.disabled));
+                checkResults();
                 break;
             }
             default: {
@@ -473,6 +473,32 @@ public class EventDetailed extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    private void checkResults() {
+
+        String url = "https://www.hestia.live/Mapp_api/event_result/" + eventModel.getEvent_id();
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        parseResults(response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e(TAG, "Network Error", error);
+                        errorOccurred(getString(R.string.network_error));
+                    }
+                });
+
+        queue.add(stringRequest);
+
+
+    }
+
     private void parseResults(String response) {
         ArrayList<ResultModel> results = new ArrayList<>();
         try {
@@ -482,7 +508,7 @@ public class EventDetailed extends AppCompatActivity implements View.OnClickList
                 JSONObject item = initArray.getJSONObject(i);
                 ResultModel resultModel = new ResultModel();
                 resultModel.setLabel(item.getString("label"));
-                resultModel.setName(item.getString("name"));
+                resultModel.setName(item.getString("fullname"));
                 resultModel.setCollege(item.getString("college"));
                 results.add(resultModel);
             }
@@ -496,16 +522,21 @@ public class EventDetailed extends AppCompatActivity implements View.OnClickList
             }
         });
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-        //ResultsAdapter resultsAdapter = new ResultsAdapter(results);
+        results_length = results.size();
+        if (results_length > 0) {
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+            ResultsAdapter resultsAdapter = new ResultsAdapter(results);
 
-        resultList.setLayoutManager(layoutManager);
-        //resultList.setAdapter(resultsAdapter);
+            resultList.setLayoutManager(layoutManager);
+            resultList.setAdapter(resultsAdapter);
 
-        //btnRegister.setText(getString(R.string.see_results));
-        statusProgress.setVisibility(View.GONE);
-        resultAvailable = 0;
-        btnRegister.setEnabled(true);
+            btnRegister.setText(getString(R.string.results));
+            statusProgress.setVisibility(View.GONE);
+            resultAvailable = 0;
+            btnRegister.setEnabled(true);
+        } else {
+            btnRegister.setBackground(getDrawable(R.color.disabled));
+        }
 
     }
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Hestia 20</string>
+    <string name="app_name">Hestia \'20</string>
     <string name="title_activity_user_home">UserHome</string>
     <string name="registered_events">REGISTERED EVENTS</string>
     <string name="logout">Logout</string>
@@ -86,4 +86,6 @@
     <string name="event_registration">Event Registration</string>
     <string name="participant_list">Participation List</string>
     <string name="select_accommodation_day">Select Accommodation Day</string>
+    <string name="add_participant">add participant</string>
+    <string name="results">SEE RESULTS</string>
 </resources>

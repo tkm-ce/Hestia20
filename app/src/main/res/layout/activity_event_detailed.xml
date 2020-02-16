@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/black"
+    android:background="@color/colorPrimaryDark"
     tools:context=".EventDetailed.EventDetailed">
 
     <androidx.core.widget.NestedScrollView
@@ -93,7 +93,7 @@
                     android:layout_height="32dp"
                     android:contentDescription="Schedule icon"
                     android:src="@drawable/ic_date"
-                    android:tint="@color/colorAccent"
+                    android:tint="@color/colorPrimary"
                     tools:ignore="HardcodedText" />
 
                 <TextView
@@ -127,7 +127,7 @@
                     android:layout_height="32dp"
                     android:contentDescription="Registration fee icon"
                     android:src="@drawable/ic_storage"
-                    android:tint="@color/colorAccent"
+                    android:tint="@color/colorPrimary"
                     tools:ignore="HardcodedText" />
 
                 <TextView
@@ -161,7 +161,7 @@
                     android:layout_height="32dp"
                     android:contentDescription="Venue icon"
                     android:src="@drawable/ic_location"
-                    android:tint="@color/colorAccent"
+                    android:tint="@color/colorPrimary"
                     tools:ignore="HardcodedText" />
 
                 <TextView
@@ -187,7 +187,7 @@
                     android:layout_height="match_parent"
                     android:contentDescription="Prize icon"
                     android:src="@drawable/award"
-                    android:tint="@color/colorAccent"
+                    android:tint="@color/colorPrimary"
                     tools:ignore="HardcodedText" />
 
                 <TextView
@@ -236,7 +236,7 @@
             style="?attr/buttonBarButtonStyle"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/colorPrimary"
             android:text="@string/contact_details"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
@@ -295,6 +295,5 @@
     <include layout="@layout/bottom_sheet_register" />
     <include layout="@layout/bottomsheet_results" />
     <include layout="@layout/bottomsheet_coordinators" />
-    <include layout="@layout/bottom_sheet_register" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

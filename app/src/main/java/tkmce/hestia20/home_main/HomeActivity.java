@@ -287,30 +287,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         requestQueue.add(request);
     }
 
-//    private void getCategoryData(int i) {
-//        anim_toggle(1);
-//        String url = "https://www.hestia.live/Admin_API/categoryevents/" + i;
-//        RequestQueue requestQueue = Volley.newRequestQueue(this);
-//        StringRequest request = new StringRequest(Request.Method.GET, url,
-//
-//                new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String s) {
-//                        Type listType = new TypeToken<List<EventBasicModel>>() {
-//                        }.getType();
-//                        List<EventBasicModel> top_events = new Gson().fromJson(s, listType);
-//                        parseCategoricalEvents(top_events);
-//                    }
-//                }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError volleyError) {
-//                Log.e(TAG, "onErrorResponse: ", volleyError.getCause());
-//                Toast.makeText(HomeActivity.this, getString(R.string.error_toast), Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//        requestQueue.add(request);
-//    }
-
 
     @Override
     public void onResume() {

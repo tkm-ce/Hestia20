@@ -28,7 +28,7 @@
                 android:contentDescription="@string/event_poster"
                 android:scaleType="centerCrop"
                 android:src="@mipmap/ic_launcher"
-                android:tint="#6F000000" />
+                android:tint="#45000000" />
 
             <TextView
                 android:id="@+id/user_event_row_date"

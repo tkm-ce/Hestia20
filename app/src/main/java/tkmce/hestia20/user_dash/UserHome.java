@@ -26,19 +26,22 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 
 import net.glxn.qrgen.android.QRCode;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -51,9 +54,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import de.hdodenhof.circleimageview.CircleImageView;
 import tkmce.hestia20.Adapter.TopEventAdapter;
 import tkmce.hestia20.Constants;
+import tkmce.hestia20.EventDetailed.EventDetailed;
 import tkmce.hestia20.R;
+import tkmce.hestia20.home_main.HomeActivity;
 import tkmce.hestia20.login_page.SplashActivity;
 import tkmce.hestia20.model.EventBasicModel;
+import tkmce.hestia20.model.EventModel;
 
 import static android.view.View.VISIBLE;
 
@@ -81,6 +87,10 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_home);
 
+        init();
+    }
+
+    private void init() {
         CircleImageView user_pic = findViewById(R.id.user_pic);
         account = GoogleSignIn.getLastSignedInAccount(this);
 
@@ -137,7 +147,6 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
         logoutSheetFragment = BottomSheetLogoutFragment.newInstance(this);
         logoutSheetFragment.show(getSupportFragmentManager(), logoutSheetFragment.getTag());
     }
-
 
 
     private void getBarcodeAccount() {
@@ -256,28 +265,16 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
     }
 
     private void parseResponse(String response) {
-        try {
-            JSONArray registrations = new JSONArray(response);
-            for (int i = 0; i < registrations.length(); i++) {
-                JSONObject item = registrations.getJSONObject(i);
-                EventBasicModel reg = new EventBasicModel();
-                reg.setEvent_id(item.getString("event_id"));
-                reg.setTitle(item.getString("title"));
-                reg.setF1_hint(item.getString("f1_hint"));
-                reg.setF2_hint(item.getString("f2_hint"));
-                reg.setFile1(item.getString("file1"));
-                reg.setFile2(item.getString("file2"));
-                regEvents.add(reg);
-            }
+        Gson gson = new Gson().newBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+        Type listType = new TypeToken<List<EventBasicModel>>() {
+        }.getType();
+        regEvents = gson.fromJson(response, listType);
 
-            adapter.notifyDataSetChanged();
-            dialogLoad.dismiss();
+        adapter.notifyDataSetChanged();
+        dialogLoad.dismiss();
 
-            if (regEvents.size() == 0) {
-                noEvents.setVisibility(VISIBLE);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
+        if (regEvents.size() == 0) {
+            noEvents.setVisibility(VISIBLE);
         }
     }
 
@@ -332,6 +329,29 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
 
     @Override
     public void onRowClicked(String event_id) {
+        String url = "https://www.hestia.live/Mapp_api/event_by_id/" + event_id;
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        StringRequest request = new StringRequest(Request.Method.GET, url,
 
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        Gson gson = new Gson().newBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+                        EventModel eventDetails = gson.fromJson(s, EventModel.class);
+
+                        Intent intent = new Intent(getApplicationContext(), EventDetailed.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable(EventDetailed.EVENT, eventDetails);
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Log.e(TAG, "onErrorResponse: ", volleyError.getCause());
+                Toast.makeText(UserHome.this, getString(R.string.error_toast), Toast.LENGTH_SHORT).show();
+            }
+        });
+        requestQueue.add(request);
     }
 }

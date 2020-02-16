@@ -141,14 +141,14 @@ public class EventDetailed extends AppCompatActivity implements View.OnClickList
 
             Picasso.with(this)
                     .load("https://www.hestia.live/assets/uploads/event_images/" + eventModel.getImg())
-                    .resize(700,400)
+                    .resize(700, 400)
                     .centerCrop()
                     .placeholder(R.drawable.landing_placeholder)
                     .into((ImageView) findViewById(R.id.detailsImage));
         }
 
         Log.d(TAG, "onCreate: ");
-        
+
         Toolbar toolbar = findViewById(R.id.detailsToolbar);
         setSupportActionBar(toolbar);
 
@@ -186,7 +186,13 @@ public class EventDetailed extends AppCompatActivity implements View.OnClickList
         else
             findViewById(R.id.viewVenue).setVisibility(View.GONE);
 
-        smallDesc.setText(eventModel.getShort_desc());
+
+        if (TextUtils.isEmpty(eventModel.getShort_desc())) {
+            smallDesc.setVisibility(View.GONE);
+        }else{
+            smallDesc.setText(eventModel.getShort_desc());
+        }
+
         if (!TextUtils.isEmpty(eventModel.getPrize())) {
             String prize = getString(R.string.prizes_worth) + " " + eventModel.getPrize();
             prizes.setText(prize);
@@ -195,6 +201,8 @@ public class EventDetailed extends AppCompatActivity implements View.OnClickList
         }
         details.setText(Html.fromHtml(eventModel.getDetails()));
         details.setMovementMethod(LinkMovementMethod.getInstance());
+
+        Log.d(TAG, "setText: ");
 
         col1Text.setText(eventModel.getCol1_name());
         col2Text.setText(eventModel.getCo2_name());

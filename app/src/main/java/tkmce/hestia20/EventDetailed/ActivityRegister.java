@@ -10,12 +10,6 @@ import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.EditText;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -33,6 +27,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import tkmce.hestia20.Adapter.ParticipantListAdapter;
 import tkmce.hestia20.R;
 
@@ -42,7 +41,7 @@ public class ActivityRegister extends AppCompatActivity implements ParticipantLi
 
     private String eventId;
     private ArrayList<String> emails;
-//    private CheckedTextView day1;
+    //    private CheckedTextView day1;
 //    private CheckedTextView day2;
 //    private CheckedTextView day3;
 //    private CheckedTextView day4;

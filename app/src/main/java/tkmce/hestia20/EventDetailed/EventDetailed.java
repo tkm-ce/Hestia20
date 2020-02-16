@@ -189,7 +189,7 @@ public class EventDetailed extends AppCompatActivity implements View.OnClickList
 
         if (TextUtils.isEmpty(eventModel.getShort_desc())) {
             smallDesc.setVisibility(View.GONE);
-        }else{
+        } else {
             smallDesc.setText(eventModel.getShort_desc());
         }
 

@@ -27,9 +27,9 @@
         <activity android:name=".home_main.AboutActivity" />
         <activity android:name=".home_main.SponsorsActivity" />
         <activity android:name=".home_main.ScheduleActivity" />
-        <activity android:name=".home_main.ActivityRegister" />
-        <activity android:name=".home_main.PaymentActivity" />
-        <activity android:name=".home_main.PaymentFinishActivity" />
+        <activity android:name=".EventDetailed.ActivityRegister" />
+        <activity android:name=".EventDetailed.PaymentActivity" />
+        <activity android:name=".EventDetailed.PaymentFinishActivity" />
         <activity android:name=".EventDetailed.EventDetailed" />
     </application>
 

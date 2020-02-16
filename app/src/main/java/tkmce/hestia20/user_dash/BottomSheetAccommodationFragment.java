@@ -76,7 +76,9 @@ public class BottomSheetAccommodationFragment extends BottomSheetDialogFragment 
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(context);
-                params.put(Constants.KEY_EMAIL, Objects.requireNonNull(account.getEmail()));
+                if (account != null) {
+                    params.put(Constants.KEY_EMAIL, Objects.requireNonNull(account.getEmail()));
+                }
                 return params;
             }
 
@@ -89,10 +91,12 @@ public class BottomSheetAccommodationFragment extends BottomSheetDialogFragment 
         try {
             JSONObject item = new JSONObject(response);
 
-            ((CheckedTextView) view.findViewById(R.id.day_1)).setChecked(item.getBoolean("day1"));
-            ((CheckedTextView) view.findViewById(R.id.day_2)).setChecked(item.getBoolean("day2"));
-            ((CheckedTextView) view.findViewById(R.id.day_3)).setChecked(item.getBoolean("day3"));
-            ((CheckedTextView) view.findViewById(R.id.day_4)).setChecked(item.getBoolean("day4"));
+            ((CheckedTextView) view.findViewById(R.id.accommodation_registered)).setChecked(item.getBoolean("accommodation_registered"));
+
+//            ((CheckedTextView) view.findViewById(R.id.day_1)).setChecked(item.getBoolean("day1"));
+//            ((CheckedTextView) view.findViewById(R.id.day_2)).setChecked(item.getBoolean("day2"));
+//            ((CheckedTextView) view.findViewById(R.id.day_3)).setChecked(item.getBoolean("day3"));
+//            ((CheckedTextView) view.findViewById(R.id.day_4)).setChecked(item.getBoolean("day4"));
         } catch (JSONException e) {
             e.printStackTrace();
         }

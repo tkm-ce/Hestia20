@@ -1,4 +1,4 @@
-package tkmce.hestia20.home_main;
+package tkmce.hestia20.EventDetailed;
 
 import android.graphics.Bitmap;
 import android.graphics.Color;

@@ -93,7 +93,6 @@
                     android:layout_height="32dp"
                     android:contentDescription="Schedule icon"
                     android:src="@drawable/ic_date"
-                    android:tint="@color/colorPrimary"
                     tools:ignore="HardcodedText" />
 
                 <TextView
@@ -127,7 +126,6 @@
                     android:layout_height="32dp"
                     android:contentDescription="Registration fee icon"
                     android:src="@drawable/ic_storage"
-                    android:tint="@color/colorPrimary"
                     tools:ignore="HardcodedText" />
 
                 <TextView
@@ -161,7 +159,6 @@
                     android:layout_height="32dp"
                     android:contentDescription="Venue icon"
                     android:src="@drawable/ic_location"
-                    android:tint="@color/colorPrimary"
                     tools:ignore="HardcodedText" />
 
                 <TextView
@@ -187,7 +184,7 @@
                     android:layout_height="match_parent"
                     android:contentDescription="Prize icon"
                     android:src="@drawable/award"
-                    android:tint="@color/colorPrimary"
+                    android:tint="#fff"
                     tools:ignore="HardcodedText" />
 
                 <TextView
@@ -219,7 +216,7 @@
             android:textColor="@color/white"
             app:layout_constraintEnd_toStartOf="@id/event_contact"
             app:layout_constraintStart_toStartOf="parent"
-            tools:text="Buy Ticket" />
+            tools:text="@string/buy_ticket" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/status_progress"

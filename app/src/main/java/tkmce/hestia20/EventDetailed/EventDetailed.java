@@ -17,6 +17,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -42,12 +49,6 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.regex.Pattern;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import tkmce.hestia20.Adapter.ResultsAdapter;
 import tkmce.hestia20.R;
 import tkmce.hestia20.model.EventModel;
@@ -199,7 +200,8 @@ public class EventDetailed extends AppCompatActivity implements View.OnClickList
         } else {
             findViewById(R.id.viewPrize).setVisibility(View.GONE);
         }
-        details.setText(Html.fromHtml(eventModel.getDetails()));
+
+        details.setText(Html.fromHtml(eventModel.getDetails()).toString().replace("#000000", "#ffffff"));
         details.setMovementMethod(LinkMovementMethod.getInstance());
 
         Log.d(TAG, "setText: ");

@@ -1,99 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<RelativeLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_bg"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".login_page.SplashActivity"
     android:fitsSystemWindows="true"
     android:keepScreenOn="true"
-    android:orientation="vertical"
-    tools:context=".login_page.SplashActivity">
-
-
-    <!--<RelativeLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:fitsSystemWindows="true"-->
-    <!--android:gravity="center_vertical"-->
-    <!--android:keepScreenOn="true"-->
-    <!--tools:context=".login_page.SplashActivity">-->
-
-
-    <!--<Button-->
-    <!--android:id="@+id/sign_in_launcher"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_gravity="center"-->
-    <!--android:layout_alignParentBottom="true"-->
-    <!--android:layout_centerHorizontal="true"-->
-    <!--android:layout_marginStart="25dp"-->
-    <!--android:layout_marginEnd="25dp"-->
-    <!--android:backgroundTint="#fff"-->
-    <!--android:background="@drawable/button_circle"-->
-    <!--android:drawableEnd="@drawable/ic_arrow_forward"-->
-    <!--android:fontFamily="@font/circular_bold"-->
-    <!--android:paddingLeft="20dp"-->
-    <!--android:paddingEnd="10dp"-->
-    <!--android:textAllCaps="false"-->
-    <!--android:text="Sign in with Google" />-->
-
-    <!--</RelativeLayout>-->
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="50dp"
-        android:scaleX="0.5"
-        android:scaleY="0.5"
-        android:src="@raw/logo" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="-75dp"
-        android:text="@string/app_name"
-        android:fontFamily="@font/brandon"
-        android:textColor="@color/white"
-        android:textSize="35sp" />
-
-    <Button
-        android:id="@+id/sign_in_launcher"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="74dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/sign_in_bg"
-        android:backgroundTint="@color/colorPrimaryDark"
-        android:fontFamily="@font/ave_heavy"
-        android:text="@string/sign_in_with_google"
-        android:textColor="@color/white"
-        android:textSize="17sp"
-        android:visibility="visible" />
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/hestia_green" />
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/progress"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="60dp"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/loading" />
+    <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/noInternet"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="6dp"
-        app:lottie_autoPlay="false"
-        app:lottie_loop="false"
-        app:lottie_rawRes="@raw/no_internet" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            android:src="@raw/logo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="-75dp"
+            android:text="@string/app_name"
+            android:fontFamily="@font/brandon"
+            android:textColor="@color/white"
+            android:textSize="35sp" />
+
+        <Button
+            android:id="@+id/sign_in_launcher"
+            android:layout_width="310dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="74dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/google_bg"
+            android:backgroundTint="@color/white"
+            android:fontFamily="@font/ave_heavy"
+            android:text="@string/sign_in_with_google"
+            android:textSize="17sp"
+            android:visibility="visible" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/progress"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="60dp"
+            app:lottie_autoPlay="true"
+            android:visibility="invisible"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loading" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/noInternet"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="6dp"
+            app:lottie_autoPlay="false"
+            app:lottie_loop="false"
+            app:lottie_rawRes="@raw/no_internet" />
 
 
-</LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

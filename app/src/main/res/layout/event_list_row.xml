@@ -47,7 +47,7 @@
                     android:contentDescription="@string/event_poster"
                     android:scaleType="centerCrop"
                     android:src="@drawable/landing_placeholder"
-                    android:tint="#41000000" />
+                    android:tint="#00000000" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 

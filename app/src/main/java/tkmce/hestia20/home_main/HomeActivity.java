@@ -2,11 +2,18 @@ package tkmce.hestia20.home_main;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.android.volley.Request;
@@ -30,11 +37,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import tkmce.hestia20.Adapter.CategoryEventAdapter;
 import tkmce.hestia20.Adapter.EventListAdapter;
 import tkmce.hestia20.Adapter.TopEventAdapter;
@@ -52,7 +54,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private ArrayList<EventBasicModel> allEvents = new ArrayList<>();
     private BottomSheetBehavior bottomSheetBehavior;
     private ImageView section1;
-    //private ImageView section2;
     private ImageView section3;
     private ImageView section4;
     private ImageView section5;
@@ -69,6 +70,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_home);
 
         init();
+        fixPeekHeight();
         account = GoogleSignIn.getLastSignedInAccount(this);
         allEventList = findViewById(R.id.home_event_list);
 
@@ -126,11 +128,32 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         RecyclerView.LayoutManager linearLayoutManager3 = new LinearLayoutManager(getApplicationContext());
         allEventList.setLayoutManager(linearLayoutManager3);
         allEventList.setAdapter(eventListAdapter);
+    }
 
 
+    private void fixPeekHeight() {
         //setup bottom sheet
-        View bottomSheet = findViewById(R.id.home_bottom_sheet);
+        final View bottomSheet = findViewById(R.id.home_bottom_sheet);
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
+
+        final DisplayMetrics metrics = getResources().getDisplayMetrics();
+        final float ratio = ((float) metrics.heightPixels / (float) metrics.widthPixels);
+        final int height = metrics.heightPixels;
+        final int dp = (int) (height / getResources().getDisplayMetrics().density);
+//        Toast.makeText(this, "" + ratio, Toast.LENGTH_SHORT).show();
+
+        bottomSheet.post(new Runnable() {
+            @Override
+            public void run() {
+                bottomSheetBehavior.setPeekHeight(dp + 150);
+                if (ratio > 1.8)
+                    bottomSheetBehavior.setPeekHeight(dp - 105);
+                if (ratio > 1.9)
+                    bottomSheetBehavior.setPeekHeight(dp + 330);
+            }
+        });
+
+
     }
 
     private void anim_toggle(int i) {
@@ -145,13 +168,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     private void init() {
         section1 = findViewById(R.id.section_icon1);
-        //section2 = findViewById(R.id.section_icon2);
         section3 = findViewById(R.id.section_icon3);
         section4 = findViewById(R.id.section_icon4);
         section5 = findViewById(R.id.section_icon5);
 
         section1.setOnClickListener(this);
-        //section2.setOnClickListener(this);
         section3.setOnClickListener(this);
         section4.setOnClickListener(this);
         section5.setOnClickListener(this);
@@ -260,7 +281,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     public void onResponse(String s) {
                         Gson gson = new Gson().newBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
                         Type listType = new TypeToken<List<EventBasicModel>>() {
-                                                    }.getType();
+                        }.getType();
                         List<EventBasicModel> category_events = gson.fromJson(s, listType);
                         parseCategoricalEvents(category_events);
                     }

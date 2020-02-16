@@ -27,8 +27,8 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="95dp"
-                android:layout_height="95dp"
+                android:layout_width="105dp"
+                android:layout_height="105dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginStart="60dp"
                 android:layout_marginTop="50dp"
@@ -40,7 +40,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
                 android:fontFamily="@font/brandon"
                 android:text="@string/app_name"
                 android:textColor="@android:color/white"

@@ -7,8 +7,12 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckedTextView;
 import android.widget.EditText;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -27,30 +31,20 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import tkmce.hestia20.Adapter.ParticipantListAdapter;
 import tkmce.hestia20.R;
 
-public class ActivityRegister extends AppCompatActivity implements ParticipantListAdapter.onCheckedListener {
+public class ActivityRegister extends AppCompatActivity {
     private static final String TAG = ActivityRegister.class.getSimpleName();
     private final int PAYMENT_REQUEST = 105, PAYMENT_SHOW = 106;
 
     private String eventId;
     private ArrayList<String> emails;
-    //    private CheckedTextView day1;
-//    private CheckedTextView day2;
-//    private CheckedTextView day3;
-//    private CheckedTextView day4;
     private EditText referField;
     private HashMap<String, String> accommodationMap;
-    private StringBuilder stringBuilder;
     private GoogleSignInAccount account;
 
-//    private ProgressDialog progress;
+    //    private ProgressDialog progress;
     private Snackbar networkSnack;
 
     @Override
@@ -73,10 +67,6 @@ public class ActivityRegister extends AppCompatActivity implements ParticipantLi
         account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
 
         RecyclerView mailList = findViewById(R.id.mail_list);
-//        day1 = findViewById(R.id.check_day_1);
-//        day2 = findViewById(R.id.check_day_2);
-//        day3 = findViewById(R.id.check_day_3);
-//        day4 = findViewById(R.id.check_day_4);
         referField = findViewById(R.id.reg_refer);
         Button btnSubmit = findViewById(R.id.reg_submit);
 
@@ -87,13 +77,8 @@ public class ActivityRegister extends AppCompatActivity implements ParticipantLi
             }
         });
 
-//        day1.setOnClickListener(this);
-//        day2.setOnClickListener(this);
-//        day3.setOnClickListener(this);
-//        day4.setOnClickListener(this);
-
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-        ParticipantListAdapter adapter = new ParticipantListAdapter(emails, getApplicationContext(), this);
+        ParticipantListAdapter adapter = new ParticipantListAdapter(emails, getApplicationContext());
         mailList.setLayoutManager(layoutManager);
         mailList.setAdapter(adapter);
 
@@ -102,8 +87,6 @@ public class ActivityRegister extends AppCompatActivity implements ParticipantLi
     }
 
     private void registerEvent() {
-        stringBuilder = new StringBuilder();
-//        String days = getDays();
         String email = account.getEmail();
         String referral = referField.getText().toString();
         String id = eventId;
@@ -124,7 +107,6 @@ public class ActivityRegister extends AppCompatActivity implements ParticipantLi
             jsonObject.put("referral_code", referral);
             jsonObject.put("reg_email", email);
             jsonObject.put("event_id", id);
-//            jsonObject.put("accommodation_days", days);
             jsonObject.put("emails", jsonArray);
 
             Intent intent = new Intent(getApplicationContext(), PaymentActivity.class);
@@ -187,53 +169,6 @@ public class ActivityRegister extends AppCompatActivity implements ParticipantLi
                 });
 
         queue.add(stringRequest);
-    }
-
-//    @NonNull
-//    private String getDays() {
-//        if (day1.isChecked()) {
-//            stringBuilder.append("1");
-//        }
-//        if (day2.isChecked()) {
-//            stringBuilder.append("2");
-//        }
-//        if (day3.isChecked()) {
-//            stringBuilder.append("3");
-//        }
-//        if (day4.isChecked()) {
-//            stringBuilder.append("4");
-//        }
-//
-//        return stringBuilder.toString();
-//    }
-
-//    @Override
-//    public void onClick(View v) {
-//        if (v == day1) {
-//            performDayCheck(day1);
-//        } else if (v == day2) {
-//            performDayCheck(day2);
-//        } else if (v == day3) {
-//            performDayCheck(day3);
-//        } else if (v == day4) {
-//            performDayCheck(day4);
-//        }
-//    }
-
-    private void performDayCheck(@NonNull CheckedTextView v) {
-        v.setChecked(!v.isChecked());
-    }
-
-    @Override
-    public void onChecked(int i) {
-        accommodationMap.remove(emails.get(i));
-        accommodationMap.put(emails.get(i), "N");
-    }
-
-    @Override
-    public void onUnChecked(int i) {
-        accommodationMap.remove(emails.get(i));
-        accommodationMap.put(emails.get(i), "Y");
     }
 
     private void errorOccurred(final String msg) {

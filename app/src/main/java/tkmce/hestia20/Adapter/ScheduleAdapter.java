@@ -59,7 +59,6 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.MyView
     public void onBindViewHolder(@NonNull ScheduleAdapter.MyViewHolder holder, int i) {
         ScheduleEventModel one = scheduleList.get(holder.getAdapterPosition());
 
-        Log.d("", "onBindViewHolder: ");
         holder.eve_name.setText(one.getEvent_name());
         if (TextUtils.isEmpty(one.getEvent_label())) {
             holder.eve_label.setVisibility(View.GONE);

@@ -56,7 +56,6 @@ import tkmce.hestia20.Adapter.TopEventAdapter;
 import tkmce.hestia20.Constants;
 import tkmce.hestia20.EventDetailed.EventDetailed;
 import tkmce.hestia20.R;
-import tkmce.hestia20.home_main.HomeActivity;
 import tkmce.hestia20.login_page.SplashActivity;
 import tkmce.hestia20.model.EventBasicModel;
 import tkmce.hestia20.model.EventModel;
@@ -108,10 +107,7 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
         noEvents = findViewById(R.id.no_events_registered);
         imgQR = findViewById(R.id.imgQR);
 
-        adapter = new TopEventAdapter(regEvents, this, this);
-        RecyclerView eventsList = findViewById(R.id.registered_events_list);
-        eventsList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        eventsList.setAdapter(adapter);
+        noEvents.setVisibility(View.GONE);
 
         fetchEvents();
 
@@ -270,6 +266,11 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
         }.getType();
         regEvents = gson.fromJson(response, listType);
 
+        adapter = new TopEventAdapter(regEvents, this, this);
+        RecyclerView eventsList = findViewById(R.id.registered_events_list);
+        eventsList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        eventsList.setAdapter(adapter);
+
         adapter.notifyDataSetChanged();
         dialogLoad.dismiss();
 
@@ -297,7 +298,6 @@ public class UserHome extends AppCompatActivity implements TopEventAdapter.OnRow
         });
     }
 
-    //TODO: add logout feature (CLEAR PREFERENCES)
     @Override
     public void onLogout() {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)

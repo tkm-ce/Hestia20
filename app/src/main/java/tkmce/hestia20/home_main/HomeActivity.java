@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -58,6 +60,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView section5;
     private LottieAnimationView anim;
     private RecyclerView allEventList;
+    private RecyclerView topEventsList;
+    private TextView topEventTitle;
 
     private GoogleSignInAccount account;
 
@@ -69,6 +73,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        topEventsList = findViewById(R.id.events_featured_recycler);
+        topEventTitle = findViewById(R.id.featured_events_title);
         init();
         fixPeekHeight();
         account = GoogleSignIn.getLastSignedInAccount(this);
@@ -80,7 +86,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
         ImageView boarding_profile_img = findViewById(R.id.boarding_profile_img);
 
-        Picasso.with(this).load(account.getPhotoUrl()).into(boarding_profile_img);
+        Picasso.with(this).load(account.getPhotoUrl())
+                .placeholder(R.drawable.landing_placeholder)
+                .into(boarding_profile_img);
 
         section1.performClick();
         //Setting menuBtn
@@ -136,17 +144,39 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         final View bottomSheet = findViewById(R.id.home_bottom_sheet);
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
 
+
+        //get shimmer layout height
+        final Display display = getWindowManager().getDefaultDisplay();
+        final View view = findViewById(R.id.shimmer_1_container);
+        view.measure(display.getWidth(), display.getHeight());
+        view.getMeasuredHeight();
+
+        //get shimmer height
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        final int height = (displayMetrics.heightPixels / 2) + 100;
+        final int height = displayMetrics.heightPixels;
 
-
-        bottomSheet.post(new Runnable() {
+        view.post(new Runnable() {
             @Override
             public void run() {
-                bottomSheetBehavior.setPeekHeight(height);
+                //get shimmer layout absolute vertical position
+                int[] location = new int[2];
+                view.getLocationOnScreen(location);
+                final int y = location[1];
+
+                bottomSheet.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        bottomSheetBehavior.setPeekHeight(height - y - view.getMeasuredHeight());
+                    }
+                });
+
             }
         });
+
+        // Toast.makeText(getApplicationContext(), ""+view.getMeasuredWidth(), Toast.LENGTH_SHORT).show();
+
+        //Toast.makeText(getApplicationContext(), ""+height, Toast.LENGTH_SHORT).show();
 
 
     }
@@ -224,7 +254,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         shimmer_top_events.stopShimmerAnimation();
         shimmer_top_events.setVisibility(View.GONE);
 
-        RecyclerView topEventsList = findViewById(R.id.events_featured_recycler);
         TopEventAdapter topEventAdapter = new TopEventAdapter(top_events, this, this);
         RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), RecyclerView.HORIZONTAL, false);
         topEventsList.setLayoutManager(linearLayoutManager);

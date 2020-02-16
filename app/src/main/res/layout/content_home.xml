@@ -2,161 +2,16 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:shimmer="http://schemas.android.com/apk/res-auto"
     android:id="@+id/home_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
     tools:context=".user_dash.UserHome">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <ImageButton
-            android:id="@+id/home_menu_btn"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@android:color/transparent"
-            android:contentDescription="@string/icon"
-            android:src="@drawable/ic_menu_1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.042"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <TextView
-            android:id="@+id/app_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:fontFamily="@font/circular_bold"
-            android:text="@string/app_name"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/boarding_profile_img"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:paddingTop="12dp"
-            android:paddingStart="1dp"
-            android:paddingEnd="12dp"
-            android:src="@color/background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_marginTop="?actionBarSize"
-        android:paddingTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <RelativeLayout
-            android:id="@+id/calendar_items"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:background="@drawable/accommodation_layout_bg"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="15dp"
-                android:contentDescription="@string/icon"
-                android:src="@drawable/ic_calendar" />
-
-            <TextView
-                android:id="@+id/home_schedule_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/circular_bold"
-                android:gravity="start"
-                android:padding="15dp"
-                android:text="@string/see_schedule"
-                android:textColor="@android:color/white"
-                android:textSize="17sp" />
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/featured_events_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="23dp"
-            android:fontFamily="@font/circular_bold"
-            android:text="@string/top_events"
-            android:textColor="@android:color/white"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/calendar_items" />
-
-
-        <com.facebook.shimmer.ShimmerFrameLayout
-            android:id="@+id/shimmer_top_events"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/featured_events_title"
-            android:orientation="vertical"
-            shimmer:duration="800">
-
-            <!-- Adding 7 rows of placeholders -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <include layout="@layout/event_placeholder_layout" />
-
-                <include layout="@layout/event_placeholder_layout" />
-
-                <include layout="@layout/event_placeholder_layout" />
-
-                <include layout="@layout/event_placeholder_layout" />
-
-                <include layout="@layout/event_placeholder_layout" />
-
-                <include layout="@layout/event_placeholder_layout" />
-
-                <include layout="@layout/event_placeholder_layout" />
-
-                <include layout="@layout/event_placeholder_layout" />
-            </LinearLayout>
-
-        </com.facebook.shimmer.ShimmerFrameLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/events_featured_recycler"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
-            android:layoutAnimation="@anim/layout_animation_fall_down"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/shimmer_top_events" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+    <include
+        android:id="@+id/home_layout_container"
+        layout="@layout/content_home_data" />
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -185,24 +40,6 @@
                 android:textColor="@android:color/background_dark"
                 android:textSize="16sp" />
 
-
-            <!--<LinearLayout-->
-            <!--android:layout_marginTop="10dp"-->
-            <!--app:layout_constraintTop_toBottomOf="@+id/user_events_title"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginStart="-2dp"-->
-            <!--app:layout_constraintEnd_toEndOf="parent"-->
-            <!--app:layout_constraintStart_toStartOf="parent">-->
-
-            <!--<androidx.recyclerview.widget.RecyclerView-->
-            <!--android:id="@+id/home_category_list"-->
-            <!--app:layout_constraintTop_toBottomOf="@+id/user_events_title"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--/>-->
-
-            <!--</LinearLayout>-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -244,37 +81,6 @@
                         android:textSize="12sp" />
                 </RelativeLayout>
 
-                <!--<RelativeLayout-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_weight="1"-->
-                <!--android:gravity="center">-->
-
-                <!--<ImageView-->
-                <!--android:contentDescription="@string/icon"-->
-                <!--android:id="@+id/section_icon2"-->
-                <!--android:layout_width="62dp"-->
-                <!--android:layout_height="62dp"-->
-                <!--android:layout_gravity="center_horizontal"-->
-                <!--android:background="@drawable/circle_go"-->
-                <!--android:padding="13dp"-->
-                <!--android:scaleType="centerCrop"-->
-                <!--android:src="@drawable/ic_online" />-->
-
-                <!--<TextView-->
-                <!--android:id="@+id/section_title2"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_below="@id/section_icon2"-->
-                <!--android:layout_alignStart="@id/section_icon2"-->
-                <!--android:layout_alignEnd="@id/section_icon2"-->
-                <!--android:fontFamily="@font/circular_bold"-->
-                <!--android:padding="3dp"-->
-                <!--android:text="@string/online"-->
-                <!--android:textAlignment="center"-->
-                <!--android:textColor="@android:color/black"-->
-                <!--android:textSize="12sp" />-->
-                <!--</RelativeLayout>-->
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -379,7 +185,7 @@
                 android:layout_height="wrap_content"
                 app:lottie_autoPlay="true"
                 app:lottie_loop="true"
-                app:lottie_rawRes="@raw/load_new" />
+                app:lottie_rawRes="@raw/event_loader" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/home_event_list"

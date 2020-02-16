@@ -5,16 +5,20 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_hestia_20"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher_hestia_20_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
             android:launchMode="singleTop"
             android:name=".home_main.HomeActivity"
             android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
         <activity
             android:launchMode="singleTop"
             android:name=".login_page.LoginPage" />
@@ -42,16 +46,16 @@
             android:name=".home_main.ScheduleActivity" />
         <activity
             android:launchMode="singleTop"
-            android:name=".EventDetailed.ActivityRegister" />
+            android:name=".eventDetailed.ActivityRegister" />
         <activity
             android:launchMode="singleTop"
-            android:name=".EventDetailed.PaymentActivity" />
+            android:name=".eventDetailed.PaymentActivity" />
         <activity
             android:launchMode="singleTop"
-            android:name=".EventDetailed.PaymentFinishActivity" />
+            android:name=".eventDetailed.PaymentFinishActivity" />
         <activity
             android:launchMode="singleTop"
-            android:name=".EventDetailed.EventDetailed" />
+            android:name=".eventDetailed.EventDetailed" />
     </application>
 
 </manifest>

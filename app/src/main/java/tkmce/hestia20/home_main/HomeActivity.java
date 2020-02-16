@@ -9,12 +9,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.airbnb.lottie.LottieAnimationView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -37,10 +31,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import tkmce.hestia20.Adapter.CategoryEventAdapter;
 import tkmce.hestia20.Adapter.EventListAdapter;
 import tkmce.hestia20.Adapter.TopEventAdapter;
-import tkmce.hestia20.EventDetailed.EventDetailed;
+import tkmce.hestia20.eventDetailed.EventDetailed;
 import tkmce.hestia20.R;
 import tkmce.hestia20.model.EventBasicModel;
 import tkmce.hestia20.model.EventModel;
@@ -63,6 +62,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private GoogleSignInAccount account;
 
     private ShimmerFrameLayout shimmer_top_events;
+    private int back_prompt = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -216,7 +216,12 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         } else if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         } else {
-            super.onBackPressed();
+            if (back_prompt == 0) {
+                back_prompt++;
+                Toast.makeText(getApplicationContext(), "Press back again to exit", Toast.LENGTH_SHORT).show();
+            } else {
+                super.onBackPressed();
+            }
         }
     }
 

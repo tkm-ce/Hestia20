@@ -52,7 +52,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private ArrayList<EventBasicModel> allEvents = new ArrayList<>();
     private BottomSheetBehavior bottomSheetBehavior;
     private ImageView section1;
-    private ImageView section2;
+    //private ImageView section2;
     private ImageView section3;
     private ImageView section4;
     private ImageView section5;
@@ -145,13 +145,13 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     private void init() {
         section1 = findViewById(R.id.section_icon1);
-        section2 = findViewById(R.id.section_icon2);
+        //section2 = findViewById(R.id.section_icon2);
         section3 = findViewById(R.id.section_icon3);
         section4 = findViewById(R.id.section_icon4);
         section5 = findViewById(R.id.section_icon5);
 
         section1.setOnClickListener(this);
-        section2.setOnClickListener(this);
+        //section2.setOnClickListener(this);
         section3.setOnClickListener(this);
         section4.setOnClickListener(this);
         section5.setOnClickListener(this);
@@ -228,27 +228,22 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if (v == section1) {
-            toggleColor(section2, section3, section4, section5);
+            toggleColor(section3, section4, section5);
             section1.setBackgroundResource(R.drawable.circle_go);
 //            getCategoryData(5);
             getCategoryData("technical");
-        } else if (v == section2) {
-            toggleColor(section1, section3, section4, section5);
-            section2.setBackgroundResource(R.drawable.circle_go);
-//            getCategoryData(2);
-            getCategoryData("online");
         } else if (v == section3) {
-            toggleColor(section2, section1, section4, section5);
+            toggleColor(section1, section4, section5);
             section3.setBackgroundResource(R.drawable.circle_go);
 //            getCategoryData(3);
             getCategoryData("general");
         } else if (v == section4) {
-            toggleColor(section2, section3, section1, section5);
+            toggleColor(section3, section1, section5);
             section4.setBackgroundResource(R.drawable.circle_go);
 //            getCategoryData(4);
             getCategoryData("cultural");
         } else if (v == section5) {
-            toggleColor(section2, section3, section4, section1);
+            toggleColor(section3, section4, section1);
             section5.setBackgroundResource(R.drawable.circle_go);
 //            getCategoryData(1);
             getCategoryData("workshop");

@@ -10,9 +10,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:textSize="16sp"
+        android:text="Accommodation"
         android:fontFamily="@font/circular_bold"
-        android:text="Accommodation" />
+        android:textSize="16sp" />
 
 
     <CheckedTextView

@@ -19,8 +19,8 @@ public class EventModel implements Serializable {
     private String prize;
     private String file1;
     private String file2;
-    private String col1_name;
-    private String col1_no;
+    private String co1_name;
+    private String co1_no;
     private String fee_type;
     private String co2_name;
     private String co2_no;
@@ -142,19 +142,19 @@ public class EventModel implements Serializable {
     }
 
     public String getCol1_name() {
-        return col1_name;
+        return co1_name;
     }
 
     public void setCol1_name(String col1_name) {
-        this.col1_name = col1_name;
+        this.co1_name = col1_name;
     }
 
     public String getCol1_no() {
-        return col1_no;
+        return co1_no;
     }
 
     public void setCol1_no(String col1_no) {
-        this.col1_no = col1_no;
+        this.co1_no = col1_no;
     }
 
     public String getCo2_name() {

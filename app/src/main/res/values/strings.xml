@@ -88,4 +88,5 @@
     <string name="select_accommodation_day">Select Accommodation Day</string>
     <string name="add_participant">add participant</string>
     <string name="results">SEE RESULTS</string>
+    <string name="submit_s">Submit</string>
 </resources>

@@ -12,8 +12,8 @@
     <item android:state_checked="true">
         <shape android:shape="rectangle">
             <corners android:radius="5dp" />
-            <solid android:color="@color/colorPrimary" />
-            <stroke android:width="1dp" android:color="@color/colorPrimary" />
+            <solid android:color="@color/colorAccentFaded" />
+            <stroke android:width="1dp" android:color="@color/colorAccentFaded" />
         </shape>
     </item>
 </selector>

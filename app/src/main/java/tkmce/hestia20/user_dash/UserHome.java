@@ -55,7 +55,7 @@ import java.util.Objects;
 import de.hdodenhof.circleimageview.CircleImageView;
 import tkmce.hestia20.Adapter.TopEventAdapter;
 import tkmce.hestia20.Constants;
-import tkmce.hestia20.EventDetailed.EventDetailed;
+import tkmce.hestia20.eventDetailed.EventDetailed;
 import tkmce.hestia20.R;
 import tkmce.hestia20.login_page.SplashActivity;
 import tkmce.hestia20.model.EventBasicModel;

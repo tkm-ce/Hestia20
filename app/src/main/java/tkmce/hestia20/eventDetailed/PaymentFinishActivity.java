@@ -1,4 +1,4 @@
-package tkmce.hestia20.EventDetailed;
+package tkmce.hestia20.eventDetailed;
 
 import android.app.Activity;
 import android.os.Bundle;

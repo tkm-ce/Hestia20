@@ -136,20 +136,15 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         final View bottomSheet = findViewById(R.id.home_bottom_sheet);
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
 
-        final DisplayMetrics metrics = getResources().getDisplayMetrics();
-        final float ratio = ((float) metrics.heightPixels / (float) metrics.widthPixels);
-        final int height = metrics.heightPixels;
-        final int dp = (int) (height / getResources().getDisplayMetrics().density);
-//        Toast.makeText(this, "" + ratio, Toast.LENGTH_SHORT).show();
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        final int height = (displayMetrics.heightPixels / 2) + 100;
+
 
         bottomSheet.post(new Runnable() {
             @Override
             public void run() {
-                bottomSheetBehavior.setPeekHeight(dp + 150);
-                if (ratio > 1.8)
-                    bottomSheetBehavior.setPeekHeight(dp - 105);
-                if (ratio > 1.9)
-                    bottomSheetBehavior.setPeekHeight(dp + 330);
+                bottomSheetBehavior.setPeekHeight(height);
             }
         });
 

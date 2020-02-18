@@ -2,7 +2,7 @@
 <RelativeLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".login_page.SplashActivity"
+    tools:context="live.hestia.app.login_page.SplashActivity"
     android:fitsSystemWindows="true"
     android:keepScreenOn="true"
     xmlns:android="http://schemas.android.com/apk/res/android">
@@ -73,7 +73,5 @@
             app:lottie_autoPlay="false"
             app:lottie_loop="false"
             app:lottie_rawRes="@raw/no_internet" />
-
-
     </LinearLayout>
 </RelativeLayout>

@@ -5,7 +5,7 @@
     android:id="@+id/home_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".user_dash.UserHome">
+    tools:context="live.hestia.app.user_dash.UserHome">
 
     <ImageView
         android:tint="#C3000000"
@@ -63,11 +63,10 @@
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/user_back"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="23dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:padding="20dp"
         android:background="@android:color/transparent"
         android:scaleX="1.3"
         android:scaleY="1.3"

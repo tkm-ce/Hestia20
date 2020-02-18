@@ -19,4 +19,5 @@
     <color name="black_transparent_60">#6D000000</color>
 
     <color name="background">#dddddd</color>
+    <color name="splashColor">#263133</color>
 </resources>

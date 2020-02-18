@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
-    tools:context=".EventDetailed.EventDetailed">
+    tools:context="live.hestia.app.EventDetailed.EventDetailed">
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scroll"
@@ -184,7 +184,7 @@
                     android:layout_height="match_parent"
                     android:contentDescription="Prize icon"
                     android:src="@drawable/award"
-                    android:tint="#fff"
+                    android:tint="@color/colorAccent"
                     tools:ignore="HardcodedText" />
 
                 <TextView
@@ -210,6 +210,7 @@
             android:id="@+id/register_event"
             style="?attr/buttonBarButtonStyle"
             android:layout_width="0dp"
+            android:fontFamily="@font/brandon"
             android:layout_height="match_parent"
             android:background="@color/colorAccent"
             android:enabled="false"
@@ -232,6 +233,8 @@
             android:id="@+id/event_contact"
             style="?attr/buttonBarButtonStyle"
             android:layout_width="0dp"
+            android:fontFamily="@font/brandon"
+
             android:layout_height="match_parent"
             android:background="@color/colorPrimary"
             android:text="@string/contact_details"
@@ -263,6 +266,7 @@
                 android:adjustViewBounds="true"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
+                android:fontFamily="@font/brandon"
                 android:textSize="35sp"
                 android:textStyle="bold"
                 android:transitionName="textAnimation"
@@ -278,6 +282,7 @@
                 android:src="@drawable/landing_placeholder"
                 android:tint="@color/black_transparent"
                 android:transitionName="imageTransition"
+                android:fontFamily="@font/brandon"
                 app:layout_collapseMode="parallax"
                 app:layout_collapseParallaxMultiplier="0.5" />
 
@@ -290,7 +295,9 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <include layout="@layout/bottom_sheet_register" />
+
     <include layout="@layout/bottomsheet_results" />
+
     <include layout="@layout/bottomsheet_coordinators" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

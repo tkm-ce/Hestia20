@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
-    tools:context=".user_dash.UserHome">
+    tools:context="live.hestia.app.user_dash.UserHome">
 
     <include layout="@layout/content_user_home" />
 

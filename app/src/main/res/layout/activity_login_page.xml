@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
     android:orientation="vertical"
-    tools:context=".login_page.LoginPage">
+    tools:context="live.hestia.app.login_page.LoginPage">
 
     <AutoCompleteTextView
         android:id="@+id/boarding_college_field"

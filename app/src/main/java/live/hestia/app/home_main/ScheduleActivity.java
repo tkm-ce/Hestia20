@@ -26,6 +26,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -93,7 +94,6 @@ public class ScheduleActivity extends AppCompatActivity implements View.OnClickL
         init();
         shimmer_schedule.startShimmerAnimation();
     }
-
 
 
     @Override
@@ -170,14 +170,18 @@ public class ScheduleActivity extends AppCompatActivity implements View.OnClickL
 //        else
 //            sch2.performClick();
 
-        if (day.compareTo("05-03-2020") <= 0)
-            sch1.performClick();
-        else if (day.compareTo("06-03-2020") == 0)
-            sch2.performClick();
-        else if (day.compareTo("07-03-2020") == 0)
-            sch3.performClick();
-        else
-            sch4.performClick();
+        try {
+            if (today.compareTo(format.parse("05-03-2020")) <= 0)
+                sch1.performClick();
+            else if (today.compareTo(format.parse("06-03-2020")) == 0)
+                sch2.performClick();
+            else if (today.compareTo(format.parse("07-03-2020")) == 0)
+                sch3.performClick();
+            else
+                sch4.performClick();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
 

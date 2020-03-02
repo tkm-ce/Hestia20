@@ -2,6 +2,7 @@ package live.hestia.app.home_main;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -12,12 +13,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.android.volley.Request;
@@ -36,12 +31,22 @@ import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 
 import java.lang.reflect.Type;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import live.hestia.app.Adapter.CategoryEventAdapter;
 import live.hestia.app.Adapter.EventListAdapter;
 import live.hestia.app.Adapter.TopEventAdapter;
@@ -81,6 +86,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         topEventsList = findViewById(R.id.events_featured_recycler);
         topEventTitle = findViewById(R.id.featured_events_title);
         init();
+        setCTF();
         fixPeekHeight();
         account = GoogleSignIn.getLastSignedInAccount(this);
         allEventList = findViewById(R.id.home_event_list);
@@ -430,6 +436,55 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
                             }
                         }).show();
+            }
+        });
+    }
+
+    private void setCTF() {
+        final SharedPreferences date_prefs=getApplicationContext().getSharedPreferences("login_prefs",0);
+        final SharedPreferences.Editor editor=date_prefs.edit();
+        ImageView logo=findViewById(R.id.logo_menu);
+
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+
+        Date currentDate= Calendar.getInstance().getTime();
+        Date endDate=null;
+        try {
+            endDate=simpleDateFormat.parse("05/03/2020");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        if (!currentDate.before(endDate)) {
+            return;
+        }
+
+        logo.setOnClickListener(new View.OnClickListener() {
+            int counter=date_prefs.getInt("counter",0);
+            @Override
+            public void onClick(View view) {
+                if (counter<3) {
+                    counter++;
+                    int n=4-counter;
+                    Toast.makeText(HomeActivity.this, "You're "+n+" click away from Flag clue !", Toast.LENGTH_SHORT).show();
+                    if (counter==3) {
+                        editor.putInt("counter",counter);
+                        editor.apply();
+                    }
+                }else {
+                    Toast.makeText(HomeActivity.this, "You'll know it when you see it", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HomeActivity.this,
+                            "1(11:1-12:3)-2(5:1-12:5)\n" +
+                            "3(1:5-3:2-8:1)\n" +
+                            "3(12:6)-4(1:1-3:2-4:3-10:7)-5(2:1-3:1-6:3-8:1-9:1-9:8-10:1)-6(3:1) \n" +
+                            "6(5:2-8:1-10:6-11:4-17:1)-7(4:6)-8(3:6)\n" +
+                            "8(5:7-7:1-11:1)-10(2:6)\n" +
+                            "10(6:4-13:1-14:1)\n" +
+                            "10(15:4)-11(3:3-4:1-6:2-8:3-14:2)\n" +
+                            "12(15:1)\n" +
+                            "14(7:7)-16(9:4)-18(7:1)", Toast.LENGTH_SHORT).show();
+
+                }
             }
         });
     }

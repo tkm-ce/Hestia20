@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -83,6 +84,7 @@ public class TopEventAdapter extends RecyclerView.Adapter<TopEventAdapter.ViewHo
 
     }
 
+    @Keep
     public interface OnRowClickedListener {
         void onRowClicked(String event_id);
     }

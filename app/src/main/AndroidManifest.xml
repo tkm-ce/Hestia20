@@ -8,6 +8,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher_hestia_20"
         android:label="@string/app_name"
+        android:usesCleartextTraffic="true"
         android:roundIcon="@mipmap/ic_launcher_hestia_20_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">

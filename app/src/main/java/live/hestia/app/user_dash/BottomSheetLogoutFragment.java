@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.Keep;
+
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import live.hestia.app.R;
@@ -47,6 +49,7 @@ public class BottomSheetLogoutFragment extends BottomSheetDialogFragment {
         return view;
     }
 
+    @Keep
     public interface logoutListener {
         void onLogout();
 

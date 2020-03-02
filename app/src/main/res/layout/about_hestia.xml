@@ -27,9 +27,9 @@
             android:background="@android:color/transparent"
             android:contentDescription="@string/icon"
             android:visibility="gone"
+            style="?textAppearanceBody1"
             android:src="@drawable/ic_menu_1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.042"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

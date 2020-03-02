@@ -482,7 +482,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                             "10(6:4-13:1-14:1)\n" +
                             "10(15:4)-11(3:3-4:1-6:2-8:3-14:2)\n" +
                             "12(15:1)\n" +
-                            "14(7:7)-16(9:4)-18(7:1)", Toast.LENGTH_SHORT).show();
+                            "14(7:7)-16(9:4)-18(7:1)", Toast.LENGTH_LONG).show();
 
                 }
             }
